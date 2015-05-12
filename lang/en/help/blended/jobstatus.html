@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ayuda con estado de trabajos</title>
+</head>
+<body>
+<h1>Estado de trabajos de escaneo</h1>
+<p> Esta página le permite comprobar si han ocurrido errores durante el proceso de detección del trabajo.<BR>
+<BR>
+En la columna "Mensaje de estado" debería aparecer siempre un mínimo de información que le permita conocer qué ha ocurrido
+durante el procesamiento de su trabajo, si ha habido algún error grave debe aparecer un mensaje con el contenido específico del error.<BR>
+<BR>
+Si todo ha funcionado correctamente (Command executed. Status Code = 0) y su trabajo no se ha procesado correctamente (no aparece ningún error adicional, pero no puede ver el resultado del trabajo), debe contactar con un 
+administrador. Éste podrá encontrar en la sección Detalles información más detallada de lo ocurrido y depurar el error.
+<BR></p>
+Errores más frecuentes y soluciones posibles:<BR><BR>
+1.<i>El archivo log.txt no existe o está vacío: </i> ha fallado el proceso de detección OMR, es posible que el formato de imágenes o el documento original no se puedan detectar por el procesador. Contacte con un administrador.<BR>
+<BR>
+2.<i>El archivo fieldset no existe:</i>  compruebe que ha situado los documentos para analizar en la carpeta que contiene los fieldset adecuados.<BR>
+<BR>
+3.<i>El archivo de resultados no existe o está vacío:</i>  ha habido un error en la detección OMR. Este error no debería impedir que vea el cuestionario y rellene manualmente las respuestas en el formulario de edición.<BR>
+<BR>
+4.<i>No se ha podido encontrar el conjunto de preguntas del quiz:</i> este es un error grave. Significa que usted no podrá evaluar el cuestionario ni obtener el conjunto de preguntas a partir del cual fue creado el documento PDF. 
+Esto ocurre porque el registro de la tabla blended_attempts no existe o ha sido borrado por alguna causa. Contacte con un administrador.<BR>
+ 
+</body>
+</html>

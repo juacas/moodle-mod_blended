@@ -1,0 +1,12 @@
+[Job]
+SourceFile=zip:./p322.zip#3221.jpg
+PageIndex=1
+OutputImagePath=/var/moodledata199/2/moddata/blended/cuestionario1-2011-04-06-13-04-45-2/Escaneos/OMR_original_marked9044335630162187188.jpg
+ActivitityCode=322
+ParsedResults=Escaneos/omr_result[322].txt
+[Job]
+SourceFile=zip:./p322.zip#3222.jpg
+PageIndex=2
+OutputImagePath=/var/moodledata199/2/moddata/blended/cuestionario1-2011-04-06-13-04-45-2/Escaneos/OMR_original_marked1704638176276850168.jpg
+ActivitityCode=322
+ParsedResults=Escaneos/omr_result[322].txt

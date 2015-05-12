@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ayuda con insertar calificaciones</title>
+</head>
+<body>
+<h1>Introducir calificaciones para la tarea seleccionada</h1>
+Esta página le permite calificar una tarea completada por equipos.
+<br>
+<h2>Introducir calificaciones</h2>
+<p> Si en la página <i>Calificar tarea</i> se seleccionó una tarea para la cual todavía no se ha definido ningún 
+equipo, se muestra una tabla con un formulario vacío. Cada fila de la tabla se corresponde a un equipo. 
+Cada equipo consta de un campo de texto que contiene el nombre del equipo (por defecto un entero). 
+A continuación hay una serie de campos de texto destinados a los identificadores de los miembros de los equipos. 
+Después de estos un campo de texto y una lista desplegable para introducir la nota del equipo. El rango de la lista 
+desplegable puede ser de 0 a 10 o bien de 0 a 100 dependiendo de la escala de calificaciones definida para la tarea. 
+La longitud del campo de texto para la calificación también depende de dicha escala. De 0 a 10 tendrá una longitud de dos 
+dígitos y de 0 a 100 de tres dígitos. Si se introduce la nota manualmente en el campo de texto, se actualiza automáticamente 
+el valor de la lista desplegable asociada y viceversa. 
+</p>
+<h2>Guardar calificaciones</h2>
+<p>
+Una vez que se da a <i>Guardar calificaciones</i> y los equipos junto con sus calificaciones se almacenan con éxito, la tabla que 
+contiene el formulario se divide en dos partes, separadas por una línea divisoria. La parte superior muestra los equipos y 
+las calificaciones guardadas. Si algún equipo se ha guardado pero todavía no se le ha asignado una nota, a la derecha de su 
+lista desplegable de calificación se muestra un mensaje de alerta en rojo ‘No calificado’ advirtiendo al profesor de la situación.
+</p>
+<h2>Buscar un identificador</h2>
+<p>
+También se puede observar que encima de la tabla aparece un campo de texto llamado <i>Buscar identificador</i>. Introduciendo el 
+identificador de uno de los estudiantes inscritos en algún equipo para esa tarea, localiza el equipo al que pertenece y 
+coloca el cursor automáticamente en el campo de texto de calificación asociado. Se facilita de esta forma la localización del equipo 
+al que pertenece un alumno para introducir o modificar su calificación.</p>
+
+
+</body>
+</html>

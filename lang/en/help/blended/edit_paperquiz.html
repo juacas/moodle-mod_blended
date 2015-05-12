@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ayuda con generación de documentos PDF</title>
+</head>
+<body>
+<h1>Generar cuestionarios en papel</h1>
+<p>En la primera parte de la página podemos ver una tabla con los trabajos
+realizados o que se encuentran en espera. El profesor podrá eliminar de la base de
+datos los trabajos pinchando sobre el icono con una X que se encuentra al lado de
+cada tarea. <BR>
+Cada trabajo se encuentra identificado por el usuario que lo generó y su fecha de creación.
+</p>
+<p>En la segunda parte de la página se muestra un formulario que le permitirá
+seleccionar una serie de parámetros  de configuración  para el cuestionario: <BR>
+<BR>
+<i>Formato de PaperQuiz</i><BR>
+<b>Seleccione el cuestionario:</b> Elija de la lista el cuestionario que se desea generar en PDF. <BR>
+Para que esta lista esté disponible, al menos debe existir un cuestionario con preguntas en el curso al que pertenece el módulo blended.<BR>
+Para crear un cuestionario con preguntas, acuda al menú principal del curso, y seleccione Agregar Actividad → Cuestionario.<BR><BR>
+El módulo Blended soporta hasta cuatro tipos diferentes de preguntas en un mismo cuestionario:<BR>
+- Verdadero/Falso.<BR>
+- Descripción.<BR>
+- Preguntas <i>multichoice</i>, con una o varias respuestas posibles.<BR>
+- Preguntas de tipo ensayo.<BR>
+<BR>
+
+<b>Número de ejemplares:</b> Indica el número de cuestionarios que se imprimirán en un mismo documento PDF.<BR>
+Los cuestionarios se imprimirán de manera consecutiva.<BR>
+<BR>
+<b>Generar cuestionario más tarde:</b> Al marcar esta casilla, el trabajo se ejecutará más tarde. <BR>
+El proceso cron() de Moodle creará los documentos en unos minutos. Se recomienda usar esta opción cuando se desean generar
+un número alto de cuestionarios.<BR>
+<BR>
+
+<i>Formato de las etiquetas.</i><BR>
+<i>Identificar las etiquetas para los humanos.</i><BR>
+<b>No identificar.</b> En los códigos 2D el id del cuestionario irá codificado en el código y no podrá ser legible para los humanos.<BR>
+<b>Mostrar código legible para los humanos. </b> En las etiquetas aparecerá un número de identificación que podrá ser leído visualmente. 
+</p>
+<p> Para efectuar la generación del documento PDF pulse el botón "Generar ficheros para el cuestionario".
+
+</p>
+
+</body>
+</html>

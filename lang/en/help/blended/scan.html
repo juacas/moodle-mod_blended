@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ayuda con Procesar documentos escaneados</title>
+</head>
+<body>
+<h1>Procesar cuestionarios escaneados</h1>
+<p> Esta sección permite crear un trabajo de documentos escaneados para que el detector de marcas OMR lo procese y 
+detecte las respuestas que se han introducido en los cuestionarios.
+<BR><BR>
+En la parte superior de la página verá una tabla de trabajos. Para obtener ayuda sobre esta tabla, consulte en la sección
+"Supervisar el estado de la corrección".<BR><BR>
+</p>
+<h2>Cómo generar un nuevo trabajo de cuestionarios escaneados</h2>
+<p> 
+Antes de procesar un trabajo aplicando el detector de marcas OMR, es necesario que se cumplan una serie de requisitos para que el proceso se pueda ejecutar adecuadamente. Hay que prestar especial atención a los siguientes aspectos:<BR>
+<BR>
+1. Para una mejor detección, pida a los alumnos que realicen las marcas de respuesta de la forma más clara posible, rellenando de forma completa los espacios reservados para contestar. Es fundamental que no se escriba nada sobre 
+las zonas de etiquetas del cuestionario; esto dificultaría seriamente el trabajo del procesador de marcas pudiendo llegar a invalidar el proceso. Para responder se recomienda emplear un bolígrafo o rotulador de color preferentemente oscuro. <BR>
+2. Todas las imágenes escaneadas se deben incluir en un mismo documento  PDF, o bien ser incluídas todas ellas con un formato JPG o TIF en un archivo de compresión .ZIP.<BR>
+3. Asegúrese de que la calidad de las imágenes escaneadas es lo suficientemente aceptable como para que el procesador OMR pueda trabajar con ellas.<BR>
+4. El archivo que contenga las imágenes debe ser subido a la plataforma Moodle, en el mismo directorio donde se creó el documento PDF que contiene los cuestionarios originales correspondientes a las imágenes escaneadas. En ese directorio 
+se deberán encontrar los archivos <i>fieldset_OMR[activitycode].fields</i> generados automáticamente en el mismo momento en el que se generó el documento PDF correspondiente al enunciado de los cuestionarios. Para reconocer el directorio en el que 
+se deben subir los archivos es conveniente saber que el nombre de la carpeta tendrá incluido el nombre del cuestionario, y el día y la hora en el que se generó dicho lote de cuestionarios. Otra forma de saberlo, o bien de cerciorarse de que 
+se está procediendo correctamente, es comprobar que los nombres de los archivos <i>fieldset_OMR[activitycode].fields</i> se corresponden con los códigos activitycode de los cuestionarios que se van a procesar (si se tienen a mano).<BR>
+<BR>
+Teniendo en cuenta estos detalles, ya se puede crear un nuevo trabajo de escaneo.<BR>
+Haciendo clic en el botón “Elija o suba un archivo” se abrirá un navegador de archivos en el directorio raíz de Moodle, a partir del cual podremos seleccionar el nuevo trabajo que queremos crear (si ya lo hemos subido a Moodle) o subirlo en caso contrario.
+<BR>
+El último paso es pulsar el botón “enviar” del formulario, y a continuación, si todo el proceso ha ido bien, se habrá cargado el nuevo trabajo en la tabla de escaneos. El estado “Espera” indica que el trabajo está pendiente de ser procesado por el detector de marcas OMR.
+<BR><BR>
+El proceso de detección se realizará automáticamente por Moodle. Este procesado puede durar unos minutos.
+Acuda a la sección "Supervisar el estado de la corrección" y compruebe que el estado de su trabajo ha pasado a Terminado.
+</body>
+</html>
