@@ -19,7 +19,6 @@
         <FIELD NAME="teammethod" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Method of team creation feature"/>
         <FIELD NAME="numteams" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Number of default teams"/>
         <FIELD NAME="nummembers" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Max number of students in a team"/>
-        <FIELD NAME="assignment" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Assignment to create the teams"/>
         <FIELD NAME="randomkey" TYPE="int" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="Random key"/>
       </FIELDS>
       <KEYS>
@@ -122,7 +121,17 @@
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" COMMENT="ID of each team"/>
         <FIELD NAME="userid_leader" TYPE="int" LENGTH="10" NOTNULL="false" DEFAULT="0" SEQUENCE="false" COMMENT="ID of the leader of the team"/>
-        <FIELD NAME="id_team" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="id del equipo del agrupamiento por el que se ha actualizado esta tabla"/>
+        <FIELD NAME="id_team" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="id del equipo del agrupamiento por el que se ha actualizado esta tabla"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+      <TABLE NAME="blended_items" COMMENT="The items activated for an instance of the blended module">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true" COMMENT="ID of each record"/>
+        <FIELD NAME="id_blended" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="ID of the Blended instance"/>
+        <FIELD NAME="id_item" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="ID of the item selected for that instance"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>

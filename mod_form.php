@@ -28,7 +28,7 @@
 require_once ($CFG->dirroot.'/course/moodleform_mod.php');
 require_once($CFG->dirroot . '/lib/dml/moodle_database.php');
 require_once($CFG->dirroot . '/mod/blended/lib.php');
-
+require_once($CFG->dirroot . '/mod/blended/teams/locallib.php');
 class mod_blended_mod_form extends moodleform_mod {
 
     function definition() {
@@ -51,15 +51,9 @@ class mod_blended_mod_form extends moodleform_mod {
         $mform->addRule('name', $strrequired, 'required', null, 'client');
         
         // Descripción -----------------------------------------------------------
-       //$mform->addElement('editor', 'intro', get_string('description', 'blended'), 'wrap="virtual" rows="15" cols="75"');
-        //$mform->setType('intro', PARAM_RAW); 
-        //$mform->addRule('intro', $strrequired, 'required', null, 'client'); 
-       // $mform->setDefault('intro', ' ');
-        //JAV:se a�ade el campo intro est�ndar en todos los m�dulos de moodle (permitir� mostrar la descripci�n de este m�dulo en la pantalla principal del curso)
-		
-		$this->add_intro_editor(true, get_string('description', 'blended'));
-        
-        
+    	
+	$this->add_intro_editor(true, get_string('description', 'blended'));
+           
          //Metodo de identificación ----------------------------------------------
         $idmethodoptions = array(0 => get_string('coded','blended'), 1 => get_string('plain','blended'));
         $mform->addElement('select', 'idmethod', get_string("idmethod", "blended"), $idmethodoptions);
@@ -74,7 +68,7 @@ class mod_blended_mod_form extends moodleform_mod {
     	
 	    // enable/disable OMR part
 	   
-	    $mform->addElement('checkbox','omrenabled', get_string('OMRenable','blended'),get_string('OMRenableLabel','blended'));
+	$mform->addElement('checkbox','omrenabled', get_string('OMRenable','blended'),get_string('OMRenableLabel','blended'));
 	   
 	    
         // Número de columnas del cuestionario --------------------------------------
@@ -112,22 +106,23 @@ class mod_blended_mod_form extends moodleform_mod {
         $mform->addElement('select', 'teammethod', get_string("teammethod", "blended"), $teammethodoptions);
         $mform->addHelpButton('teammethod','teammethod', 'blended');
         $mform->setDefault('teammethod', 0);
-        
-        // Tarea por defecto -----------------------------------------------------
      
-      //  $courseid=$this->_cm->course;
-   		$courseid=$COURSE->id;
-        if ($courseid!='')
-        if ($modules=get_coursemodules_in_course("assignment", $courseid)) 
-        {
-            foreach ($modules as $mod_instance) {
-                $options[$mod_instance->instance] = $mod_instance->name;
-            }   
-            $assignmentoptions = array(0 => get_string('any', 'blended')) + $options;
-            $mform->addElement('select', 'assignment', get_string("defaultassignment", "blended"), $assignmentoptions);
- 			$mform->addHelpButton('assignment', 'defaultassignment', 'blended');
-            $mform->setDefault('assignment', 0);
-        }  
+        // Select items
+        // 
+       $items= blended_get_calificable_items($COURSE);
+       $selected_items = blended_get_available_items($this->current);
+       if (count($items)==count($selected_items)){ // this is represented as no filtering
+           $selected_items=array();
+       }
+       $optionsitems=array();
+       foreach ($items as $id => $item) {
+           $optionsitems[$id]=blended_get_item_name($item);
+       }
+        $selectitemsform= $mform->addElement('select','selecteditems',get_string('selectitems','blended'),$optionsitems);
+        
+        $mform->addHelpButton('selecteditems', 'selectitems', 'blended');
+        $selectitemsform->setMultiple(true);
+        $selectitemsform->setSelected(array_keys($selected_items));
         
         // Numero de equipos por defecto ----------------------------------------
         $teamsoptions = array_combine(range(1, TEAMS_MAX_ENTRIES),range(1, TEAMS_MAX_ENTRIES));
@@ -137,7 +132,7 @@ class mod_blended_mod_form extends moodleform_mod {
         // Numero de miembros por defecto ----------------------------------------
         $nummembersoptions = array_combine(range(1, MEMBERS_MAX_ENTRIES),range(1, MEMBERS_MAX_ENTRIES));
         $mform->addElement('select', 'nummembers', get_string("defaultnummembers", "blended"), $nummembersoptions);
-		$mform->addHelpButton('nummembers','defaultnummembers', 'blended');
+	$mform->addHelpButton('nummembers','defaultnummembers', 'blended');
         $mform->setDefault('nummembers', 4);
         
       

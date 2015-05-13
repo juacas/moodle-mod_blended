@@ -113,6 +113,7 @@ function blended_add_instance($blended) {
 	
 	// Try to store it in the database.
 	$blended->id = $DB->insert_record('blended', $blended);
+        blended_restrict_items($blended,$blended->selecteditems);
 	return $blended->id;
 }
 
@@ -128,7 +129,11 @@ function blended_update_instance($blended) {
 	global $DB;
 	$blended->timemodified = time();
 	$blended->id = $blended->instance;
-
+        if (!isset($blended->selecteditems)){
+            blended_restrict_items($blended,array());
+        }else{
+        blended_restrict_items($blended,$blended->selecteditems);
+        }
 	return $DB->update_record("blended", $blended);
 }
 
@@ -156,7 +161,7 @@ function blended_delete_instance($id) {
 	if (! $DB->delete_records('blended', array('id'=>$blended->id))) {
 		$result = false;
 	}
-
+        blended_restrict_items($blended,array());
 	return $result;
 }
 

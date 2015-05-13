@@ -115,7 +115,7 @@
         echo '<table align="center" width="40%" cellspacing="10" cellpadding="5" >'; 
 
         //Obtenemos la referencia a toda la informaci�n sobre los m�dulos dentro del curso
-        $activities= blended_get_calificable_items($course);
+        $activities= blended_get_available_items($blended);
        
        
        

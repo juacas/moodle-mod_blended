@@ -104,7 +104,7 @@
 // Imprimimos el formulario por pantalla -----------------------------------------
 
 	//Lista de las actividades creadas en el modulo que puedan poseer calificaci�n
-    $items = blended_get_calificable_items($course);
+    $items = blended_get_available_items($blended);
     //No hay ninguna actividad
     if(empty($items)){
     	echo "<center>";

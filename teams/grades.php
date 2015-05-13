@@ -105,7 +105,7 @@
 // Imprimimos el formulario por pantalla ---------------------------- 
 
     //Obtenci�n de las actividades que son calificables
-    $items = blended_get_calificable_items($course);
+    $items = blended_get_available_items($blended);
 
     if(empty($items)){
     	echo "<center>";

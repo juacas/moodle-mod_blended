@@ -94,7 +94,7 @@ require_once ($CFG->dirroot . '/grade/lib.php');
 
 	//Obtenci�n de una lista desplegable con las actividades calificables
 	
-	$items = blended_get_calificable_items($course) ;
+	$items = blended_get_available_items($blended);
 
 	if (empty ( $items )) {
 		echo $OUTPUT->box(get_string('noassignments','blended'));

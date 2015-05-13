@@ -57,7 +57,7 @@ if (!$context = context_course::instance($course->id)) {
 require_login($cm->course, false, $cm);
 
 
-$items = blended_get_calificable_items($course);
+$items = blended_get_available_items($blended);
 if (count($items) == 0) {
     print_error("No calificable items in this course");
 }

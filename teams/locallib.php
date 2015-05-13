@@ -782,14 +782,42 @@ function groups_get_grouping_by_id($courseid, $id) {
     }
     return false;
 }
-
+function blended_restrict_items($blended,$selecteditems)
+{
+    global $DB;
+    //remove all records
+    $DB->delete_records('blended_items',array('id_blended'=>$blended->id));  
+    foreach ($selecteditems as $itemid){
+        $DB->insert_record('blended_items',array('id_blended'=>$blended->id,'id_item'=>$itemid));
+    }
+}
+function blended_get_available_items($blended){
+    global $DB;
+    $selecteditems = $DB->get_records('blended_items',array('id_blended'=>$blended->id));
+    $items = blended_get_calificable_items($blended->course);
+    if ($selecteditems){ // blended has restricted items
+        $filtereditems=array();
+        foreach ($selecteditems as $itemrecord) {
+           $filtereditems[$itemrecord->id_item]=$items[$itemrecord->id_item];
+        }
+        return $filtereditems;
+    }else{ // all items activated
+        return $items;
+    }
+}
 /**
  * 
- * @param stdClass $course
+ * @param stdClass|int $course|$courseid
  * @return array(grade_item)
  */
 function blended_get_calificable_items($course) {
-    $calificables = new grade_tree($course->id);
+    if ($course instanceof \stdClass){
+        $courseid = $course->id;
+    }
+    else{
+        $courseid=$course;
+    }
+    $calificables = new grade_tree($courseid);
     $items = $calificables->items;
     $selectable = array();
     foreach ($items as $key => $value) {
