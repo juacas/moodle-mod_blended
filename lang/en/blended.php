@@ -3,6 +3,8 @@ $string['modulename']       = 'Blended';
 $string['modulenameplural'] = 'Blendeds';
 
 //view.php
+$string['mainpage_help'] = "Blended is a module that helps to undertake presential activities in Moodle.";
+$string['mainpage'] = "Blended is a module that helps to undertake presential activities in Moodle.";
 $string['assignmentpage'] = 'Generate assignment page';
 $string['blendedquizzes'] = 'Blended Quizzes';
 $string['pluginadministration'] = 'Blended Configuration';
@@ -13,7 +15,7 @@ $string['gradepage'] = 'Grade assignmnent';
 $string['teamsmanagementpage'] = 'Manage teams';
 $string['signupteampage'] = 'Sign up team';
 $string['nostudentsincourse'] = 'Links disabled:<br><br>! There are not students in the course!';
-//Revisar estas dos variables...
+$string['noneisactive'] = 'There are no active students in the course!';
 $string['noidnumberview'] = 'Student has not filled in DNI profile field!';
 $string['nouserinfodataview']  = 'Student has not filled in Personalized ID profile field !';
 $string['studentisnotactive'] = 'There are inactive students in the course!';
@@ -28,6 +30,10 @@ $string['labelsGenerateStickersdesc'] = 'Print codebar stickers to identify the 
 $string['managementGenerateTaskSheet'] = 'This tool can create templates for your face-to-face activities in your classroom.';
 $string['managementTeamGrading'] = 'Here you can grade the classroom tasks using the teams made for face-to-face work. The grades are inserted in the gradebook taking into account the configured teams.';
 $string['managementTeamCreation'] = 'Creation and management of the teams for presential tasks. The teams can be made by the teacher of by the students themselves.';
+//Students
+$string['studentlabelsGenerateStickers'] = 'Generate stickers to be attached to your activity sheets. You can configure the number of stickers per page.';
+$string['studentmanagementGenerateTaskSheet'] = 'If an activity needs to the done in the classroom, you can obtain here a template to ease the submission in Moodle.';
+$string['studentJoinAGroup'] = 'You can join a workteam to undertake a classroom assignment.'; 
 
 
 //assignmentpage.php
@@ -45,6 +51,28 @@ $string['printassignmentpage'] = 'Print assignment page';
 $string['noassignments'] = 'There are no assignments created in this course.';
 
 
+//signupteam.php
+$string['selectassignpage'] = 'Sign up team';
+$string['signupteam'] = 'Sign up team';
+$string['newteam'] = 'Create a new team';
+$string['nameteam'] = 'Team name';
+$string['deletemember'] = 'Delete members';
+$string['nodefinedteams'] ='There are still no teams defined.';
+$string['userenrolledtoteam'] = '{$a->username} has been enrolled in team {$a->teamname}';
+$string['teamscount'] = 'Teams ({$a})';
+$string['teammembers'] = 'Team members';
+$string['membercount'] = 'Number of members';
+$string['teamisfull'] = 'Team already full. You can select a new team';
+$string['userremovedfromteam']='User {$a->username} removed from {$a->teamname}';
+$string['teamremoved'] = 'Team {$a->name} removed';
+$string['userpromotedtoleader'] = 'User {$a->username} promoted to leader of team {$a->teamname}';
+
+
+//save.php
+$string['inserted'] = '<center>Success!!</center>';
+$string['noinserted'] = '<center>No operation has been done.</center>';
+
+
 //grades.php
 $string['name'] = 'Assignment name';
 $string['duedate'] = 'Due date: ';
@@ -60,6 +88,21 @@ $string['teamsmanagementpagedesc'] = 'Create teams for each assignment, manual o
 $string['pagehelp'] = 'Page help contents';
 
 
+//introgrades.php
+$string['sendgrades'] = 'Save grades';
+$string['teamsfromassignment'] = 'Teams created for activity: ';
+$string['existinglinkedteams'] = 'There are existing teams for the assignment: $a already linked to another assignment.<br>The assignment: $a cannot be linked to the assignment: ';
+$string['existingteams'] = 'There are existing teams for the assignment: $a.<br> Unable to use for the assignment: $a the created teams for the assignment:  ';
+$string['teams_from'] = 'teams taken from';
+$string['idteam'] = 'Team:';
+$string['idmembers'] = 'Identifiers:';
+$string['viewalertsdesc'] = 'Alert Messages';
+$string['rewritegrades'] = '<center>¿Overwrite?<br>Individual grade<br>is different from group grade.</center>';
+$string['grade'] = 'Grade:';
+$string['nograded'] = '-';
+$string['deleteemptyteams'] = 'Remove teams if empty';
+
+
 //introteams.php
 $string['introteams'] = 'Team management for ';
 $string['creationmethod'] = 'Team creation method: ';
@@ -70,7 +113,16 @@ $string['activestudents'] = 'Only active';
 $string['allstudents'] = 'All';
 $string['nummembers'] = 'Number of members in a team:';
 $string['introgradepage'] = 'Insert grades';  
-$string['resetgroups'] = 'Reset or create a set og teams';
+$string['resetgroups'] = 'Reset or create a set of teams';
+$string['select_grouping'] = 'Choose the set of groups to be used in the activity';
+$string['introteams'] = 'Team management for ';
+
+//saveteamsgrades.php
+$string['user_regraded'] = '{$a->userlink} regraded from "{$a->prev_grade}" to "{$a->new_grade}".';
+
+
+//createTeams.php
+$string['newgroupingnotify'] = 'Created a new grouping {$a->grouping_name} with {$a->num_teams} empty teams.'; 
 
 
 //labels.php
@@ -90,7 +142,6 @@ $string['identifyforhumans'] = 'Identify labels for humans';
 $string['donotidentify'] = 'Do not identify';
 $string['showreadableid'] = 'Show human-readable id';
 $string['showfullname'] = 'Show fullname';
-$string['margin_top_mm'] = '';
 $string['margin_top_mm'] = 'Margin Top mm (Measure carefully in your stickers sheet)';
 $string['margin_bottom_mm'] = 'Margin Bottom mm (Measure carefully in your stickers sheet)';
 $string['margin_right_mm'] = 'Margin Right mm (Measure carefully in your stickers sheet)';
