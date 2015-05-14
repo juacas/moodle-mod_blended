@@ -196,7 +196,6 @@ if ($itemid==-1){
             echo $OUTPUT->continue_button(new moodle_url('/mod/blended/teams/introgrades.php',array('id'=>$id,'itemid'=>$itemid)));
 }
 	
-	echo $OUTPUT->help_icon ( 'pagehelp', 'blended' );
 	echo "</center>";
 	echo $OUTPUT->footer ();
 

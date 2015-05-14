@@ -136,9 +136,9 @@
         
         // Codigo exclusivo para profesores y administradores
         if (has_capability('mod/blended:selectoneamongallstudents', $context)) {           
-        
+            list($userids,$nonstudentids,$activeids,$users)=  blended_get_users_by_type($context_course);
             // Obtenemos todos los estudiantes del curso 
-            if($userids = blended_get_course_students_ids ($course, null, false)){
+            if($userids){
  
                 // Etiqueta de la lista desplegable
                 echo "<tr><td><label>$struser</label></td>";
@@ -162,13 +162,13 @@
                     $not_active_in       = false;
 
                     //Comprobamos si el usuario está activo
-                    if(blended_is_not_active_student($userid, $course)){
+                    if(!array_search($userid, $activeids)){
                         $not_active_in  = true;
                         $not_active_out = true;
                     }
 
                     // Obtenemos el objeto 'user' de cada estudiante del curso
-                    $user = $DB->get_record('user',array('id'=> $userid));
+                    $user = $users[$userid];
                     
                     // Obtenemos el codigo EAN de la etiqueta de cada estudiante
                     $code = blended_gen_idvalue ($user, $blended);
@@ -277,7 +277,7 @@
     
     
     echo "<center>";
-   	echo $OUTPUT->help_icon('pagehelp','blended');
+   	echo $OUTPUT->help_icon('assignmentpage','blended');
     echo "</center>";
     
    echo $OUTPUT->footer();

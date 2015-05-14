@@ -214,9 +214,7 @@ require_once ("$CFG->libdir/formslib.php");
 			
 // Finish the page -------------------------------------------------
 		
-	echo "<BR><BR><center>";
-	echo $OUTPUT->help_icon ( 'pagehelp', 'blended' );
-	echo "</center>";
+
 	echo $OUTPUT->footer ();
 	
 ?>

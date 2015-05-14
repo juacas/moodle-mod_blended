@@ -222,7 +222,7 @@ require_once ("$CFG->libdir/filelib.php");
 // Finish the page -------------------------------------------------
 
 echo "<BR><BR><center>";
-echo $OUTPUT->help_icon ( 'pagehelp', 'blended' );
+echo $OUTPUT->help_icon ( 'introteams', 'blended' );
 echo "</center>";
 echo $OUTPUT->footer ();
 

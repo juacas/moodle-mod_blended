@@ -27,6 +27,7 @@
  
     require_once("../../config.php");
     require_once("lib.php");
+    require_once("blended_locallib.php");
 
 // Get the params --------------------------------------------------
     global $DB, $PAGE, $OUTPUT;
@@ -208,8 +209,9 @@
        // Codigo exclusivo para profesores y administradores
        if (has_capability('mod/blended:selectoneamongallstudents', $context))
        {    
+           list($userids,$nonstudentids,$activeids,$users)=  blended_get_users_by_type($context_course);
            // Obtenemos todos los estudiantes del curso 	
-            if($userids = blended_get_course_students_ids ($course, null, false)){
+            if($userids ){
    				echo '<table><tr><td>';
    				echo '<fieldset><legend style="color:#2A0A1B; font-style:italic; font-weight:bold; font-size:15px;">'.$strprintforone.':</legend>';
                 echo '<table  align="center" width="40%" cellspacing="10" cellpadding="5" >';
@@ -237,12 +239,12 @@
                     $not_active_in       = false;
                     
                     //Comprobamos si el usuario esta activo
-                    if(blended_is_not_active_student($userid, $course)){
+                    if(!array_search($userid, $activeids)){
                         $not_active_in  = true;
                         $not_active_out = true;
                     }           
                     // Obtenemos el objeto 'user' de cada estudiante del curso
-                    $user = $DB->get_record('user',array('id'=>$userid));
+                    $user = $users[$userid];
                    
                     // Obtenemos el codigo EAN de la etiqueta de cada estudiante 
                     $code = blended_gen_idvalue ($user, $blended) ;
@@ -334,7 +336,7 @@
     echo "</form>";
 
     echo "<center>";
-    echo $OUTPUT->help_icon('pagehelp','blended');
+    echo $OUTPUT->help_icon('labels','blended');
     echo "</center>";
 
     // Finish the page -------------------------------------------------

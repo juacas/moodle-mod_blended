@@ -138,6 +138,9 @@ require_once ($CFG->dirroot . '/grade/lib.php');
 		echo "</center>";	
 	}//Fin if-else
 	// Finish the page
+        echo "<BR><BR><center>";
+        echo $OUTPUT->help_icon('selectassignment', 'blended');
+        echo "</center>";
 	echo $OUTPUT->footer ();
 ?>
 

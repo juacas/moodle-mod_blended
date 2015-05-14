@@ -126,7 +126,7 @@
    	}
    		  
     echo "<BR><BR><center>";
-    echo $OUTPUT->help_icon('pagehelp','blended');
+    echo $OUTPUT->help_icon('gradepage','blended');
     echo "</center>";
     
 // Finish the page

@@ -164,7 +164,7 @@ echo "</form>";
 // Finish the page -------------------------------------------------
 
 echo "<BR><BR><center>";
-echo $OUTPUT->help_icon('pagehelp', 'blended');
+echo $OUTPUT->help_icon('introgrades', 'blended');
 echo "</center>";
 echo $OUTPUT->footer();
 ?>

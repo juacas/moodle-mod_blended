@@ -140,13 +140,13 @@ if($numrows >30 || $numrows<1 || $numcolumns<1 ||$numcolumns>10){
 	notice('Los tamaños elegidos no son valores permitidos',$url1);
 }
 else{
-	
+	list($studentids,$nonstudentids,$activeids,$users)=  blended_get_users_by_type($context_course);
 	switch ($whatstudents) {
 		case 'active' :
-			$userids = blended_get_course_students_ids ( $course, null, true );
+			$userids = $activeids;
 			break;
 		case 'all' :
-			$userids = blended_get_course_students_ids ( $course, null, false );
+			$userids = $studentids;
 			break;
 		case 'list' :
 			$userListcode = required_param_array ( 'users', PARAM_RAW );
