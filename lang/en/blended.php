@@ -49,6 +49,7 @@ $string['nouserinfodata']  = 'With (#) the students that have not introduced the
 $string['noselected'] = 'Select: ';
 $string['printassignmentpage'] = 'Print assignment page';
 $string['noassignments'] = 'There are no assignments created in this course.';
+$string['selectassignment'] = 'Select activity'; // Verificar si no coincide con ['assignments
 
 
 //signupteam.php
@@ -89,6 +90,7 @@ $string['pagehelp'] = 'Page help contents';
 
 
 //introgrades.php
+$string['introgrades'] = 'Introduce the grades'; // Verificar
 $string['sendgrades'] = 'Save grades';
 $string['teamsfromassignment'] = 'Teams created for activity: ';
 $string['existinglinkedteams'] = 'There are existing teams for the assignment: $a already linked to another assignment.<br>The assignment: $a cannot be linked to the assignment: ';
@@ -123,9 +125,11 @@ $string['user_regraded'] = '{$a->userlink} regraded from "{$a->prev_grade}" to "
 
 //createTeams.php
 $string['newgroupingnotify'] = 'Created a new grouping {$a->grouping_name} with {$a->num_teams} empty teams.'; 
+$string['selectgroupingnotify'] = 'Selected a new grouping {$a->grouping_name} for {$a->item}.';
 
 
 //labels.php
+$string['labels'] = 'Labels'; //Verificar texto
 $string['labelspagedescr1'] = 'Select the student the number of labels by row and column that will be printed in a page';
 $string['labelspagedescr2'] = 'Select the number of labels by row and column that will be printed in a page';
 $string['numrows'] = 'Number of columns: ';
@@ -150,4 +154,8 @@ $string['margin_left_mm'] = 'Margin Left mm (Measure carefully in your stickers 
 
 $string['selectitems'] = 'Only show selected items. (All if none selected)';
 $string['selectitems_help'] = 'If you want to use Blended only for grading a number of items, you can select here which ones are activated.';
+
+
+//Files help
+
 ?>
