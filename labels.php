@@ -329,7 +329,7 @@
         
      // Boton IMPRIMIR ETIQUETAS
    	 echo '<table align="center">';
-    	echo "<tr><td><input type=\"button\" value=\"".$strprintlabels."\"  /></td></tr>";
+    	echo "<tr><td><input type=\"submit\" value=\"".$strprintlabels."\"  /></td></tr>";
      echo '</table>';    
         
     // Fin formulario

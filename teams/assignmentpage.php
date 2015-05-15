@@ -269,7 +269,7 @@
         // tabla con el boton
         echo $OUTPUT->spacer(array('height'=>30));
         echo '<table align="center">';
-        echo "<tr><td><input type=\"button\" value=\"".$strprintassignpage."\"  /></td></tr>";
+        echo "<tr><td><input type=\"submit\" value=\"".$strprintassignpage."\"  /></td></tr>";
         echo '</table>';
     
     // Fin formulario
