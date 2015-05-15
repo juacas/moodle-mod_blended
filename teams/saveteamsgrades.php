@@ -112,18 +112,20 @@ foreach ($teams as $team) {
         }
         $rawgrade = $team->grade->grade == -1 ? null : $team->grade->grade;
         $newfinalgrade = $team->grade->grade == -1 ? null : $item->adjust_raw_grade($team->grade->grade, $item->grademin, $item->grademax);
+        $outputmessages.="New finalgrade $newfinalgrade for team $current_team->name";
         blended_grade_team($item, $current_team, $newfinalgrade);
         foreach ($team->members as $memberid) {
 //                                if ($team->grade->rewrite)
             //Introduzco de nuevo las calificaciones
             $grade_prev = $item->get_grade($memberid);
-
+ $outputmessages.="User $memberid had grade $grade_prev->finalgrade";
+             if (!isset($grade_prev->finalgrade) && !isset($newfinalgrade)) { // skip students with no changes
+                continue;
+            }
             if (isset($grade_prev->finalgrade) && $grade_prev->finalgrade == $newfinalgrade) { // skip students with no changes
                 continue;
             }
-            if (!isset($grade_prev->finalgrade) && !isset($newfinalgrade)) { // skip students with no changes
-                continue;
-            }
+
             blended_grade_student($memberid, $item, $rawgrade, $newfinalgrade);
             // Log ---------------------------------------------------------------------------
 // Añade una entrada a la tabla de logs (registros). Estas son
