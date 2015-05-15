@@ -191,14 +191,13 @@ require_once ($CFG->libdir . '/filelib.php');
        
 // Finish the page -------------------------------------------------
 if ($itemid==-1){
-//            echo $OUTPUT->continue_button(new moodle_url('/mod/blended/view.php',array('id'=>$id)));
-    redirect(new moodle_url('/mod/blended/view.php',array('id'=>$id)));
+            echo $OUTPUT->continue_button(new moodle_url('/mod/blended/view.php',array('id'=>$id)));
+//    redirect(new moodle_url('/mod/blended/view.php',array('id'=>$id)));
 }else{
-//            echo $OUTPUT->continue_button(new moodle_url('/mod/blended/teams/introgrades.php',array('id'=>$id,'itemid'=>$itemid)));
-    redirect(new moodle_url('/mod/blended/teams/introgrades.php',array('id'=>$id,'itemid'=>$itemid)));
+            echo $OUTPUT->continue_button(new moodle_url('/mod/blended/teams/introgrades.php',array('id'=>$id,'itemid'=>$itemid)));
+//    redirect(new moodle_url('/mod/blended/teams/introgrades.php',array('id'=>$id,'itemid'=>$itemid)));
 }
 	
-	echo "</center>";
 	echo $OUTPUT->footer ();
 
 
