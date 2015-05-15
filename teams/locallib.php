@@ -1426,7 +1426,7 @@ function blended_grade_student($memberid, grade_item $item, $rawgrade, $newfinal
     $array_members_grades['userid'] = $memberid;
     $array_members_grades['rawgrade'] = (float)$rawgrade;
     $status = grade_update('mod/blended', $item->courseid, $item->itemtype, $item->itemmodule, $item->iteminstance, $item->itemnumber, $array_members_grades);
-    $item->update_final_grade($memberid, $newfinalgrade, 'mod/blended');
+    $item->update_final_grade($memberid, (float)$newfinalgrade, 'mod/blended');
  
 }
 
