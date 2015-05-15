@@ -165,11 +165,7 @@ echo "</form>";
 }
 // Finish the page -------------------------------------------------
 
-
-echo $OUTPUT->footer();
 ?>
-
-<br />
 <script type="text/javascript">
 <!--
     function searchTeam(field, length, numTeams, numMembers) {
@@ -317,3 +313,6 @@ echo $OUTPUT->footer();
 // END -->  
 
 </script>
+<?php
+echo $OUTPUT->footer();
+?>

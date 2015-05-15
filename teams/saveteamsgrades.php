@@ -101,7 +101,6 @@ if (!empty($array_return)) {
     $strinserted = blended_get_error_alert($array_return, "insert");
 }
 
-$grade_array = blended_get_scale_array($item);
 //Para cada equipo:
 foreach ($teams as $team) {
     //Si se ha introducido calificaci�n:
@@ -112,13 +111,13 @@ foreach ($teams as $team) {
         }
         $rawgrade = $team->grade->grade == -1 ? null : $team->grade->grade;
         $newfinalgrade = $team->grade->grade == -1 ? null : $item->adjust_raw_grade($team->grade->grade, $item->grademin, $item->grademax);
-        $outputmessages.="New finalgrade $newfinalgrade for team $current_team->name";
+        $outputmessages.="<p>New finalgrade $newfinalgrade for team $current_team->name</p>";
         blended_grade_team($item, $current_team, $newfinalgrade);
         foreach ($team->members as $memberid) {
 //                                if ($team->grade->rewrite)
             //Introduzco de nuevo las calificaciones
             $grade_prev = $item->get_grade($memberid);
- $outputmessages.="User $memberid had grade $grade_prev->finalgrade";
+ $outputmessages.="<p>User $memberid had grade $grade_prev->finalgrade</p>";
              if (!isset($grade_prev->finalgrade) && !isset($newfinalgrade)) { // skip students with no changes
                 continue;
             }
@@ -145,10 +144,7 @@ foreach ($teams as $team) {
             $a = new stdClass();
             $a->userlink = $OUTPUT->user_picture($user) . fullname($user);
             $a->prev_grade = grade_format_gradevalue($grade_prev->finalgrade, $item);
-//                                $a->prev_grade= (isset($grade_array)&& isset($grade_prev->rawscaleid))?$grade_array[$grade_prev->rawscaleid]:number_format($grade_prev->finalgrade);
             $a->new_grade = grade_format_gradevalue($grade_new->finalgrade, $item);
-//                                $a->new_grade= isset($grade_array)?$grade_array[$team->grade->grade]:number_format($team->grade->grade);
-            //$string['user_regraded']     = '{$a->userlink} regraded from {$a->prev_grade} to {$a->new_grade}.';
             $msg = get_string('user_regraded', 'blended', $a);
             $outputmessages.= $OUTPUT->box($msg);
         }

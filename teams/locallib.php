@@ -563,10 +563,11 @@ function blended_get_grades_from_form($teams) {
         $grade->id = $id_grade;
         $grade->id_team = $team->id;
         $grade->id_item = $team->id_activity;
-        $grade->grade = $gvalue;
 
-        if ($gvalue == null && $glvalue !== null) {
-            $grade->grade = $glvalue === -1 ? null : $glvalue;
+        if ($glvalue == -1 ) {
+            $grade->grade = $gvalue;
+        }else{
+            $grade->grade = $glvalue;
         }
 
         if ($grade->grade != null) {
@@ -1599,9 +1600,9 @@ function blended_generate_groups_table($item, $blended, $is_grading = true) {
         if ($is_grading) {
             list ( $grade, $alert ) = blended_get_team_grade($group, $item);
             // Nombre del campo de texto "Calificación"
-            $gname = "team_" . $t . "_grade";
+            $grade_text_input_name = "team_" . $t . "_grade";
             // Nombre para las opciones de la lista deplegable "Calificación"
-            $glname = "team_" . $t . "_gradelist";
+            $grade_select_input_name = "team_" . $t . "_gradelist";
             //Si equipo no calificado	
             if (!$grade) {
                 if ($emptyteam == true) {
@@ -1645,8 +1646,9 @@ function blended_generate_groups_table($item, $blended, $is_grading = true) {
             if ($gradearray !== null) {
                 // Campo de texto "Calificación"
                 // Lista desplegable "Calificación"
+              
                 $gvalue = $gvalue !== null ? (int) $gvalue : null; // scales uses integer values
-                $grade_select_field = "<select name=\"$glname\" id=\"$glname\" align=\"left\" onchange=\"setGradeTextField(this,$gname)\">";
+                $grade_select_field = "<select name=\"$grade_select_input_name\" id=\"$grade_select_input_name\" align=\"left\" onchange=\"setGradeTextField(this,$grade_text_input_name)\">";
                 $grade_select_field.= "<option value=\"-1\">$strnone</option>";
                 foreach ($gradearray as $key => $val) {
                     if ($gvalue !== null && $key == $gvalue) {
@@ -1659,7 +1661,7 @@ function blended_generate_groups_table($item, $blended, $is_grading = true) {
             } else {
                 $grade_select_field = '';
             }
-            $grade_field = "<input type=\"text\" name=\"$gname\" id=\"$gname\" value=\"$gvalue\"  size=\"$gradelength\" maxlength=\"$gradelength\"  align=\"center\" onkeyup=\"setGradeSelect(this,$glname,$gradelength,null,$grademax)\">";
+            $grade_field = "<input type=\"text\" name=\"$grade_text_input_name\" id=\"$grade_text_input_name\" value=\"$gvalue\"  size=\"$gradelength\" maxlength=\"$gradelength\"  align=\"center\" onkeyup=\"setGradeSelect(this,$grade_select_input_name,$gradelength,null,$grademax)\">";
 //                                        $grade_field="<input type=\"text\" name=\"$gname\" id=\"$gname\" value=\"$gvalue\"  size=\"$gradelength\" maxlength=\"$gradelength\"  align=\"center\" >";
 
             $tablerow->cells[] = $gradehidden_field . $grade_field . $grade_select_field;
@@ -1693,15 +1695,15 @@ function blended_generate_groups_table($item, $blended, $is_grading = true) {
         $gvalue = null;
         $fontsize = 2;
         // Nombre del campo de texto "Calificación"
-        $gname = "team_" . $t . "_grade";
+        $grade_text_input_name = "team_" . $t . "_grade";
         // Nombre para las opciones de la lista deplegable "Calificación"
-        $glname = "team_" . $t . "_gradelist";
+        $grade_select_input_name = "team_" . $t . "_gradelist";
 
         // Campo de texto "Calificación"
-        $gradehidden_field = "<input type=\"text\" name=\"$gname\" id=\"$gname\" value=\"$gvalue\"  size=\"$gradelength\" maxlength=\"$gradelength\"  align=\"center\" onkeyup=\"setGradeSelect(this,$glname,$gradelength,null,$grademax)\">";
+        $gradehidden_field = "<input type=\"text\" name=\"$grade_text_input_name\" id=\"$grade_text_input_name\" value=\"$gvalue\"  size=\"$gradelength\" maxlength=\"$gradelength\"  align=\"center\" onkeyup=\"setGradeSelect(this,$grade_select_input_name,$gradelength,null,$grademax)\">";
 //                            $gradehidden_field = "<input type=\"text\" name=\"$gname\" id=\"$gname\" value=\"$gvalue\"  size=\"$gradelength\" maxlength=\"$gradelength\"  align=\"center\" >";
         // Lista desplegable "Calificación"
-        $grade_select_field = "<select name=\"$glname\" id=\"$glname\" align=\"left\" onchange=\"setGradeTextField(this,$gname)\">";
+        $grade_select_field = "<select name=\"$grade_select_input_name\" id=\"$grade_select_input_name\" align=\"left\" onchange=\"setGradeTextField(this,$grade_text_input_name)\">";
         $grade_select_field .= "<option value=\"-1\">$strnone</option>";
         foreach ($gradearray as $key => $val) {
             if ($gvalue !== null && $val == $gvalue) {
