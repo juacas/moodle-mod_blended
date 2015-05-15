@@ -105,7 +105,7 @@ require_once ($CFG->libdir . '/filelib.php');
     $teams = blended_get_teams_from_form($numteams,$nummembers,$itemid);	
 	/*Llamada a la funci�n que me actualiza el agrupamiento	
 	recogiendo en el array 'contador' las veces que se repite cada miembro*/
-    $contador=blended_actualizar_agrupamiento ( $teams, $item,$blended);
+    $outputmessages=blended_actualizar_agrupamiento ( $teams, $item,$blended);
 	// Log ---------------------------------------------------------------------------
 	
 	// Añade una entrada a la tabla de logs (registros). Estas son
@@ -125,7 +125,6 @@ require_once ($CFG->libdir . '/filelib.php');
 	$url1 = "updateTeams.php?id=" . $id ;
 	echo "<body onload=actualizar()>";
 	echo "<form name='updategrouping' action ='".$url1."' method='POST' >";
-// 		echo "<input type='hidden' name='contador' value='".serialize($contador)."'>";
 		echo "<input type='hidden' name='actualizar_agr' value=1>";
 		echo "<input type='hidden' name='numteams' value='$numteams'>";
 		echo "<input type='hidden' name='nummembers' value='$nummembers'>";

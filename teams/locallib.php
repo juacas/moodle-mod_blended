@@ -1256,12 +1256,13 @@ function blended_comprobar_calificaciones(grade_item $item, array $users) {
  * @param int $nummembers int con el numero máximo de miembros a introducir
  * @param int $itemid int con el identificador de la tarea
  *
- * @return  array con el numero de veces que se repite cada estudiante introducido
+ * @return  outputmessages html text for screen reporting
  * ****************************************************************************** */
 
 function blended_actualizar_agrupamiento($updated_teams, grade_item $item, $blended, $delete_empty) {
 
     global $DB;
+    $output='';
     $r = 0;
     //obtengo el identificador del curso
     $grouping = blended_get_grouping($item, $blended); //groups_get_grouping($groupingid,'*',MUST_EXIST);//$DB->get_record('groupings',array('id'=>$groupingid));
@@ -1367,12 +1368,12 @@ function blended_actualizar_agrupamiento($updated_teams, grade_item $item, $blen
                 $a->username = fullname($DB->get_record('user', array('id' => $form_members[0])));
                 $a->teamname = $current_team->name;
 
-                echo $OUTPUT->notification(get_string('userpromotedtoleader','blended',$a));
+                $output.= $OUTPUT->notification(get_string('userpromotedtoleader','blended',$a));
             }
         }
     }
 
-    return $members_processed;
+    return $output;
 
 // 	//Actualizaci�n de las calificaciones(si existen) : comparar los miembros con los de "grade_grades" y si 
 // 	//no estan en el vector borrarlos de la tabla
