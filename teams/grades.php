@@ -75,7 +75,7 @@
     $PAGE->set_url($url);
     $PAGE->set_title(format_string($blended->name));
     $PAGE->set_heading($course->fullname);
-   	$PAGE->set_pagelayout('standard');
+    $PAGE->set_pagelayout('standard');
     
 // Get the strings --------------------------------------------------
     $strgradepage               = get_string("gradepage","blended");
@@ -95,7 +95,7 @@
 // Print the main part of the page ----------------------------------   
 
     echo $OUTPUT->spacer(array('height'=>20));
-    echo $OUTPUT->heading(format_string(get_string('gradepage', 'blended')));
+    echo $OUTPUT->heading(format_string(get_string('gradepage', 'blended')).$OUTPUT->help_icon('gradepage','blended'));
     echo'<center>';
     echo $OUTPUT->box(format_text('Tareas a calificar: '), 'generalbox', 'intro');
     echo'</center>';
@@ -125,10 +125,6 @@
    	echo html_writer::table($table);
    	}
    		  
-    echo "<BR><BR><center>";
-    echo $OUTPUT->help_icon('gradepage','blended');
-    echo "</center>";
-    
 // Finish the page
    echo $OUTPUT->footer();
 ?>

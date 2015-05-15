@@ -464,7 +464,11 @@ function blended_get_team_grade($team, $item) {
     $members = groups_get_members($team->id);
     // Compara con las notas de los miembros del equipo obtenidas del gradebook
 //        $grades = grade_get_grades($team->courseid, $item->itemtype, $item->itemmodule, $item->iteminstance,array_keys($members));
-    $bookgrades = grade_grade::fetch_users_grades($item, array_keys($members), true);
+    if (count($members)==0){
+        $bookgrades = array();
+    }else{
+        $bookgrades = grade_grade::fetch_users_grades($item, array_keys($members), true);
+    }
     $grade = isset($blendedgrade->grade) ? $blendedgrade->grade : null;
     list($averagebookgrade, $alert) = blended_count_repeated_grades($grade, $bookgrades);
 
