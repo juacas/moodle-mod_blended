@@ -269,7 +269,7 @@
         // tabla con el boton
         echo $OUTPUT->spacer(array('height'=>30));
         echo '<table align="center">';
-        echo "<tr><td><input type=\"button\" value=\"".$strprintassignpage."\" onClick=\"checkform()\" /></td></tr>";
+        echo "<tr><td><input type=\"button\" value=\"".$strprintassignpage."\"  /></td></tr>";
         echo '</table>';
     
     // Fin formulario
@@ -281,51 +281,3 @@
     echo "</center>";
     
    echo $OUTPUT->footer();
-?>
-
-<script type="text/javascript">
-<!--
-function checkform() {
-
-var num_users=0;
-var i;
-var alert_no_user=false;
-var submit_form=true;
-
-   if ((document.getElementById('assignmentform').assignment_id.value==0) && (submit_form==true)){
-       if (document.getElementById('assignmentform').assignment_id.value.length==0) {
-           submit_form=false;
-           alert("<?php print_string("assignmentnotselected1", "blended") ?>");    
-       }  
-       else{
-           submit_form=true;
-       }        
-   }
-
-    if((document.getElementById('assignmentform').fullname_code_dni) && (submit_form==true)){
-        num_users=document.getElementById('assignmentform').fullname_code_dni.length;
-        
-        for(i=0;i<num_users;i++){
-            if((document.getElementById('assignmentform').fullname_code_dni.options[i].selected == false) && (alert_no_user == false)){
-                alert_no_user=true;
-            }
-            else if((document.getElementById('assignmentform').fullname_code_dni.options[i].selected == true)){
-                alert_no_user=false;
-                break;
-            }
-        }
-        if(alert_no_user){
-            alert("<?php print_string("usernotselected", "blended") ?>");
-            submit_form=false;
-        }
-        else{
-            submit_form=true;
-        }
-   }
-
-   if(submit_form){
-       document.getElementById('assignmentform').submit();
-   } 
-}
-// END -->    
-</script>

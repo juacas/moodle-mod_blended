@@ -329,7 +329,7 @@
         
      // Boton IMPRIMIR ETIQUETAS
    	 echo '<table align="center">';
-    	echo "<tr><td><input type=\"button\" value=\"".$strprintlabels."\" onClick=\"checkform()\" /></td></tr>";
+    	echo "<tr><td><input type=\"button\" value=\"".$strprintlabels."\"  /></td></tr>";
      echo '</table>';    
         
     // Fin formulario
@@ -342,44 +342,3 @@
     // Finish the page -------------------------------------------------
     
     echo $OUTPUT->footer();     
-?>
-<script type="text/javascript">
-<!--
-function checkform() {
-
-var num_users=0;
-var i;
-var submit_form=true;
-var form=document.getElementById('rowscolumnsform');
-var whatstudents=form.whatstudents[2];
-    if(typeof(whatstudents) !== 'undefined' && whatstudents.checked)
-        {
-
-        num_users=form.elements["users[]"].length;
-        
-        var alert_no_user=true;
-       for(i=0;i<num_users;i++){
-            if(form.elements["users[]"].options[i].selected == true)
-            {
-             alert_no_user=false;
-            break;
-            }
-            
-        }
-       
-        if(alert_no_user){
-            alert("<?php print_string("usernotselected", "blended") ?>");
-            submit_form=false;
-        }
-        else{
-            submit_form=true;
-        }
-   }
-   if(submit_form){
-	form.submit();
-   }
-}
-
-
-// END -->    
-</script>
