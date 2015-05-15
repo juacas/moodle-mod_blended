@@ -150,7 +150,7 @@ $table = blended_generate_groups_table($item, $blended);
 echo \html_writer::table($table);
 echo $OUTPUT->spacer(array('height' => 30));
 echo '<label for="deleteEmpty">' ;
-echo '<input type="checkbox" name="deleteEmpty" value="false"/>'.get_string('deleteemptyteams', 'blended').'</label>';
+echo '<input type="checkbox" name="deleteEmpty" value="true"/>'.get_string('deleteemptyteams', 'blended').'</label>';
 echo '<table align="center">';
 echo "<tr><td><input type=\"submit\" value=\"" . $strsendgrades . "\" id=\"update\" /></td>";
 echo '</table>';

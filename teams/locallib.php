@@ -1290,8 +1290,8 @@ function blended_actualizar_agrupamiento($updated_teams, grade_item $item, $blen
       y volviendo a introducir los miembros comprobando que el usuario introducido existe */
     $r = 0;
     foreach ($updated_teams as $i => $updatedteam) {
+        
         // Check members
-        //compruebo que no este vacío, es decir que haya miembros en el grupo sobrante
         $form_members = array();
         foreach ($updatedteam->members as $memberid) {
             //compruebo que el usuario introducido existe y si es as� que lo guarde
@@ -1310,15 +1310,13 @@ function blended_actualizar_agrupamiento($updated_teams, grade_item $item, $blen
         //
     if (count($form_members) == 0 && $delete_empty) { // An empty membership deletes the group ??
             groups_delete_group($updatedteam->id);
-        }
-        //guardo los miembros en un array
-        else {
+        } else { //guardo los miembros en un array
 
             $current_team = blended_get_team($updatedteam->id);
             if ($current_team) {//si existe lo actualizo
                 $current_team->name = $updatedteam->name;
                 groups_update_group($current_team);
-            } else {//si no existe lo creo
+            } else if (count($form_members)>0 || $updatedteam->name!=''){  //si no existe lo creo
                 $itemname = blended_get_item_name($item);
                 $data = new stdClass();
                 $data->courseid = $courseid;
@@ -1328,6 +1326,10 @@ function blended_actualizar_agrupamiento($updated_teams, grade_item $item, $blen
                 $updatedteam->id = groups_create_group($data);
                 groups_assign_grouping($grouping->id, $updatedteam->id, time(), true);
             }
+            else{
+                continue; // team with no id, no name, and no components
+            }
+              
             $current_team = blended_get_team($updatedteam->id, true);
             $current_members = array_keys($current_team->members);
             // find members to remove

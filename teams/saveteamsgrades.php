@@ -38,7 +38,7 @@ require_once($CFG->libdir . '/grade/grade_item.php');
 	$id = required_param ( 'id', PARAM_INT ); // Blended C Module ID, or
 	$nummembers = optional_param('nummembers',null,PARAM_INT);
 	$numteams = optional_param('numteams',null,PARAM_INT);
-	$item_id = required_param('itemid',PARAM_INT);
+	$itemid = required_param('itemid',PARAM_INT);
 	$delete_empty = optional_param('deleteEmpty', false,PARAM_BOOL);
 
 		if (! $cm = get_coursemodule_from_id ( 'blended', $id )) {
@@ -80,7 +80,7 @@ require_once($CFG->libdir . '/grade/grade_item.php');
 	
 	// show headings and menus of page
 	$url = new moodle_url ( '/mod/blended/teams/saveteamsgrades.php', array (
-			'id' => $id,'itemid'=>$item_id
+			'id' => $id,'itemid'=>$itemid
 	) );
 
 	//HEADER----
@@ -89,18 +89,18 @@ require_once($CFG->libdir . '/grade/grade_item.php');
 	$PAGE->set_heading ( $course->fullname );
 	$PAGE->set_pagelayout ( 'standard' );
 
-	$item = blended_get_item( $item_id);
+	$item = blended_get_item( $itemid);
 	$groupingid = blended_get_groupingid($item);
 	// Print the page header ---------------------------------------------------------
 	
-	echo $OUTPUT->header ();
-	
-	// Print the main part of the page -----------------------------------------------
-	
-	echo $OUTPUT->spacer ( array ('height' => 20) );
-	echo $OUTPUT->heading (get_string('sendgrades','blended'));
-	echo $OUTPUT->spacer ( array ('height' => 30) );
-	
+//	echo $OUTPUT->header ();
+//	
+//	// Print the main part of the page -----------------------------------------------
+//	
+//	echo $OUTPUT->spacer ( array ('height' => 20) );
+//	echo $OUTPUT->heading (get_string('sendgrades','blended'));
+//	echo $OUTPUT->spacer ( array ('height' => 30) );
+//	
 	$teams = blended_get_teams_from_form($item);
 	$teams = blended_get_grades_from_form($teams);
 	
@@ -169,6 +169,6 @@ if ($CFG->version >= 2014051200) {
 		}	
 	}
 
-//        echo $OUTPUT->continue_button(new moodle_url('introgrades.php',array('id'=>$id,'itemid'=>$item_id)));
+//        echo $OUTPUT->continue_button(new moodle_url('introgrades.php',array('id'=>$id,'itemid'=>$itemid)));
 //echo $OUTPUT->footer ();
-        redirect(new moodle_url('introgrades.php',array('id'=>$id,'itemid'=>$item_id)));
+        redirect(new moodle_url('introgrades.php',array('id'=>$id,'itemid'=>$itemid)));
