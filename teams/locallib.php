@@ -1425,10 +1425,9 @@ function blended_actualizar_agrupamiento($updated_teams, grade_item $item, $blen
 function blended_grade_student($memberid, grade_item $item, $rawgrade, $newfinalgrade) {
     $array_members_grades = array();
     $array_members_grades['userid'] = $memberid;
-    $array_members_grades['rawgrade'] = (float)$rawgrade;
+    $array_members_grades['rawgrade'] = (string)$rawgrade;
     $status = grade_update('mod/blended', $item->courseid, $item->itemtype, $item->itemmodule, $item->iteminstance, $item->itemnumber, $array_members_grades);
-    $item->update_final_grade($memberid, (float)$newfinalgrade, 'mod/blended');
- 
+    $item->update_final_grade($memberid, (string)$newfinalgrade, 'mod/blended'); 
 }
 
 function blended_generate_groups_table($item, $blended, $is_grading = true) {
