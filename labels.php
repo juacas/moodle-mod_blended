@@ -66,7 +66,7 @@
 
 // Log --------------------------------------------------------------
     
-    add_to_log($course->id, "blended", "labels", "labels.php?a=$blended->id", "$blended->id");
+//    add_to_log($course->id, "blended", "labels", "labels.php?a=$blended->id", "$blended->id");
 
 // Capabilities -----------------------------------------------------
     
@@ -127,7 +127,7 @@
 // Print the main part of the page ----------------------------------
 
     echo $OUTPUT->spacer(array('height'=>20));
-    echo $OUTPUT->heading(format_string($strlabelspage));
+    echo $OUTPUT->heading(format_string($strlabelspage). $OUTPUT->help_icon('labelspage','blended'));
     echo'<center>';
     echo $OUTPUT->box(format_text($strlabelspagedescr), 'generalbox', 'intro');
     echo'</center>';
@@ -146,7 +146,7 @@
     echo "<form method=\"post\" action=\"$url\"  id=\"rowscolumnsform\">";
        echo '<input name="a" value="'.$blended->id.'" type="hidden"/>';
         // Table
-       echo '<fieldset ><legend style="color:#2A0A1B; font-style:italic; font-weight:bold; font-size:15px;">'.$strpageformat.':</legend>'; 
+       echo '<fieldset ><legend>'.$strpageformat.':</legend>'; 
        echo '<table  width="60%" cellspacing="10" cellpadding="5" >';
        
           // Page Configuration
@@ -213,17 +213,17 @@
            // Obtenemos todos los estudiantes del curso 	
             if($userids ){
    				echo '<table><tr><td>';
-   				echo '<fieldset><legend style="color:#2A0A1B; font-style:italic; font-weight:bold; font-size:15px;">'.$strprintforone.':</legend>';
-                echo '<table  align="center" width="40%" cellspacing="10" cellpadding="5" >';
+   				echo '<fieldset><legend>'.$strprintforone.':</legend>';
+                echo '<table  align="center" cellspacing="10" cellpadding="5" >';
                 
                 // Etiqueta de la lista desplegable
                 echo "<tr><td valign=\"top\"><label>$struser</label></td>";              
               
                 //calculamos el numero de el numero de filas que seran mostradas al mismo tiempo       
                 $size=count($userids);
-                if($size>5){
+                if($size>15){
                     // Como maximo 5
-                    $size=5;   
+                    $size=15;   
                 }
 
                 // Lista desplegable CODE           
@@ -287,27 +287,26 @@
            }   
            // Si no hay ningun usuario en el curso
            else {    
-            	echo 'No hay ning�n usuario matriculado en el curso';            
+            	echo get_string('nostudentsincourse','blended');            
            }    
            if($not_active_out){
                //Etiqueta del campo de texto
-               echo "<tr><td colspan=\"2\"><center><font size=\"2\"color=\"#FF0000\">$strnoactiveuser</font></center></td></tr>";
+               echo "<tr><td colspan=\"2\"><center>$strnoactiveuser</center></td></tr>";
            }
            if($not_DNI_out){
-               echo "<tr><td colspan=\"2\"><center><font size=\"2\"color=\"#FF0000\">$strnoidnumber</font></center></td></tr>";
+               echo "<tr><td colspan=\"2\"><center>$strnoidnumber</font></center></td></tr>";
            }
            if($not_userinfodata_out){
-               echo "<tr><td colspan=\"2\"><center><font size=\"2\"color=\"#FF0000\">$strnouserinfodata</font></center></td></tr>";
+               echo "<tr><td colspan=\"2\"><center>$strnouserinfodata</center></td></tr>";
            }
         // Tabla 
         echo '</table>';
         echo '<td height="100%" valign="TOP">';
         
-        echo '<fieldset><legend style="color:#0B3861; font-size:12px;">';
-        echo $strlayoutmethod.':</legend>';
-        echo '<br/><label for="active"><input type="radio" name="whatstudents" checked="true" id="active" value="active">'.$stroneforeachactive.'</input></label>';
-        echo '<br/><label for="all"><input type="radio" name="whatstudents" id="all" value="all">'.$stroneforeachenrolled.'</input></label>';
-        echo '<br/><label for="list"><input type="radio" name="whatstudents" id="list" value="list">'.$strfullpages.'</input></label>';
+        echo "<fieldset><legend>$strlayoutmethod</legend>";
+        echo '<label for="active"><input type="radio" name="whatstudents" checked="true" id="active" value="active">'.$stroneforeachactive.'</input></label>';
+        echo '<label for="all"><input type="radio" name="whatstudents" id="all" value="all">'.$stroneforeachenrolled.'</input></label>';
+        echo '<label for="list"><input type="radio" name="whatstudents" id="list" value="list">'.$strfullpages.'</input></label>';
         echo '</fieldset>';           
       }    
         
@@ -317,10 +316,10 @@
          echo "<input type=\"hidden\" name=\"users[]\" value=\"$user->id\"";        
       }    
 
-	  echo '<fieldset ><legend style="color:#0B3861; font-size:12px;">'.$strlabelsformat.':</legend>';
-        echo '<br/><label for="none"><input type="radio" id="none" name="identifyLabel" checked="true" value="none">'.$strdonotidentify.'</input></legend>';
-        echo '<br/><label for="id"><input type="radio" name="identifyLabel" id="id" value="id">'.$strshowreadableid.'</input></legend>';
-        echo '<br/><label for="fullname"><input type="radio" name="identifyLabel" id="fullname" value="fullname">'.$strshowfullname.'</input></legend>';
+	  echo '<fieldset ><legend ">'.$strlabelsformat.':</legend>';
+        echo '<label for="none"><input type="radio" id="none" name="identifyLabel" checked="true" value="none">'.$strdonotidentify.'</input></label>';
+        echo '<label for="id"><input type="radio" name="identifyLabel" id="id" value="id">'.$strshowreadableid.'</input></label>';
+        echo '<label for="fullname"><input type="radio" name="identifyLabel" id="fullname" value="fullname">'.$strshowfullname.'</input></label>';
 	  echo '</fieldset>';
      // Fin tabla 
      echo '</table>';
@@ -334,10 +333,6 @@
         
     // Fin formulario
     echo "</form>";
-
-    echo "<center>";
-    echo $OUTPUT->help_icon('labels','blended');
-    echo "</center>";
 
     // Finish the page -------------------------------------------------
     

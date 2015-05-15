@@ -126,9 +126,9 @@ require_once ("locallib.php");
 	//Si no hay agrupamiento y los grupos los crean los profesores
 	if ($groupingid === false && $blended->teammethod==TEAMS_BY_TEACHERS) {
 		$url = "selectassignment.php?id=$cm->id";
-                echo $OUTPUT->box($strnosigned);
-		echo $OUTPUT->continue_button( $url );
-		
+//                echo $OUTPUT->box($strnosigned);
+//		echo $OUTPUT->continue_button( $url );
+		redirect($url,$strnosigned);
 	}
 	//Si no hay pero los grupos los crean los alumnos ya sean con leader o sin el o si hay agrupamiento
 	else if($groupingid !== false || ($groupingid===false && $blended->teammethod!=0)){

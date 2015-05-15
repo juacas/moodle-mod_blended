@@ -198,17 +198,7 @@ require_once ("locallib.php");
 
 // Print the page and finish up --------------------------------------------------
 	
-        echo $OUTPUT->continue_button(new moodle_url('signupteam.php',array('id'=>$id,'itemid'=>$itemid)));
-	//Form FROM_SIGNUP
-//	$url_signup = "signupteam.php?id=".$cm->id;
-//	echo "<form name='form_signup' method='POST' action='".$url_signup."'>";	
-//		echo"<input type='hidden' name='assignment' value='".$itemid."'>";
-//		echo"<input type='hidden' name='tipoTarea' value='".$tipoTarea."'>";		
-//		//Bot�n CONTINUAR
-//		echo "<center>";
-//			echo $strinserted."<input type='submit' value='continuar'>";
-//		echo "</center>";
-//	echo"</form>";
-
+//        echo $OUTPUT->continue_button(new moodle_url('signupteam.php',array('id'=>$id,'itemid'=>$itemid)));
+        redirect(new moodle_url('signupteam.php',array('id'=>$id,'itemid'=>$itemid)));
 ?> 
     

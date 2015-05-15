@@ -1474,6 +1474,7 @@ function blended_generate_groups_table($item, $blended, $is_grading = true) {
     }
     $table = new html_table();
     $table->align = array("left");
+    
     if ($is_grading){
         $table->head = array($stridteam, $stridmembers, $strgrade, $stralertcol);
     }else{
@@ -1488,11 +1489,11 @@ function blended_generate_groups_table($item, $blended, $is_grading = true) {
         $gradealert="";
         $idteam = "team_" . $t . "_id";
         $teamname = "team_" . $t . "_name";
-        $tablerow = array();
+        $tablerow = new html_table_row();
         //Obtengo los grupos por su id		
         $teamfield = "<input type=\"hidden\" name=\"$idteam\" id=\"$group->id\" value=\"$group->id\" >" .
                 "<input type=\"text\" name=\"$teamname\" id=\"$teamname\" value=\"$group->name\" size=\"6\" maxlength=\"8\"  align=\"center\">";
-        $tablerow[] = $teamfield;
+        $tablerow->cells[] = $teamfield;
         // Obtengo los miembros de cada grupo
         $mem = $group_members[$group->id];
         // bucle miembros
@@ -1578,7 +1579,7 @@ function blended_generate_groups_table($item, $blended, $is_grading = true) {
                 $teammember_field = "<input type=\"text\" name=\"$membername\" id=\"ac-userid\" value=\"\" size=\"7\" maxlength=\"8\"  align=\"center\">";
             }
 //                                           
-            $tablerow[] = $teammember_field;
+            $tablerow->cells[] = $teammember_field;
         }//Fin del bucle MEMBERS				
         //GRADES:									
         $alert = false;
@@ -1586,7 +1587,7 @@ function blended_generate_groups_table($item, $blended, $is_grading = true) {
         
         // Si equipo vac�o							
         if ($emptyteam == true) {
-            $gradealert = 'Equipo vacio';
+            $gradealert = get_string('teamempty','blended');
         }
         if ($is_grading) {
             list ( $grade, $alert ) = blended_get_team_grade($group, $item);
@@ -1597,9 +1598,9 @@ function blended_generate_groups_table($item, $blended, $is_grading = true) {
             //Si equipo no calificado	
             if (!$grade) {
                 if ($emptyteam == true) {
-                    $gradealert = 'Equipo vacio';
+                    $gradealert = get_string('teamempty','blended');
                 } else {
-                    $gradealert = 'No calificado';
+                    $gradealert = get_string('teamnotgraded','blended');
                 }//Fin if-else
                 $gvalue = null;
                 $fontsize = 2;
@@ -1654,15 +1655,15 @@ function blended_generate_groups_table($item, $blended, $is_grading = true) {
             $grade_field = "<input type=\"text\" name=\"$gname\" id=\"$gname\" value=\"$gvalue\"  size=\"$gradelength\" maxlength=\"$gradelength\"  align=\"center\" onkeyup=\"setGradeSelect(this,$glname,$gradelength,null,$grademax)\">";
 //                                        $grade_field="<input type=\"text\" name=\"$gname\" id=\"$gname\" value=\"$gvalue\"  size=\"$gradelength\" maxlength=\"$gradelength\"  align=\"center\" >";
 
-            $tablerow[] = $gradehidden_field . $grade_field . $grade_select_field;
+            $tablerow->cells[] = $gradehidden_field . $grade_field . $grade_select_field;
         }
-        $tablerow[] = "<font size=\"$fontsize\" color=\"#FF0000\">$gradealert";
+        $tablerow->cells[] = $gradealert;
 
         $t ++;
         $table->data[] = $tablerow;
     }//Fin bucle TEAMS groups
 
-    $tablerow = array();
+    $tablerow = new html_table_row();
     //Introducci�n de un grupo vac�o
 
     $groups = groups_get_all_groups($item->courseid);
@@ -1670,7 +1671,7 @@ function blended_generate_groups_table($item, $blended, $is_grading = true) {
     $idteam = "team_" . $t . "_id";
     $teamname = "team_" . $t . "_name";
 
-    $tablerow[] = "<input type=\"hidden\" name=\"$idteam\" id=\"newTeam\" value=\"\" > <input type=\"text\" name=\"$teamname\" id=\"newTeamName\" value=\"\" size=\"6\"
+    $tablerow->cells[] = "<input type=\"hidden\" name=\"$idteam\" id=\"newTeam\" value=\"\" > <input type=\"text\" name=\"$teamname\" id=\"newTeamName\" value=\"\" size=\"6\"
 			    maxlength=\"8\"  align=\"center\">";
 
     // mostramos los identificadores de los miembros del grupo
@@ -1678,9 +1679,9 @@ function blended_generate_groups_table($item, $blended, $is_grading = true) {
     for ($f = 0; $f < $nummembers; $f ++) {
         $membername = "team_" . $t . "_member_" . $f;
         // Campo de texto "Identificador" vacio.
-        $tablerow[] = "<input type=\"text\" name=\"$membername\" id=\"ac-userid\" value=\"\" size=\"7\" maxlength=\"8\"  align=\"center\">";
+        $tablerow->cells[] = "<input type=\"text\" name=\"$membername\" id=\"ac-userid\" value=\"\" size=\"7\" maxlength=\"8\"  align=\"center\">";
     }
-    $gradealert = 'Equipo vacio';
+    $gradealert = get_string('teamempty','blended');
     if ($is_grading) {
         $gvalue = null;
         $fontsize = 2;
@@ -1703,9 +1704,9 @@ function blended_generate_groups_table($item, $blended, $is_grading = true) {
             }
         }
         $grade_select_field .= "</select>";
-        $tablerow[] = "$gradehidden_field $grade_select_field";
+        $tablerow->cells[] = "$gradehidden_field $grade_select_field";
     }
-    $tablerow[] = "<font size=\"$fontsize\" color=\"#FF0000\">$gradealert</font>";
+    $tablerow->cells[] = $gradealert;
     $table->data[] = $tablerow;
     //Fin de la tabla
     return $table;

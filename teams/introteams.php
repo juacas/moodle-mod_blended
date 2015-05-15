@@ -85,7 +85,7 @@ require_once ("$CFG->libdir/filelib.php");
 
 // Get the strings ---------------------------------------------------------------
 	$strteamsmanagementpage     = get_string("teamsmanagementpage","blended");
-	$strintroteamspage = get_string ( "introteams", "blended" );
+	$strintroteamspage = get_string ( "introteamspage", "blended" );
 	$strcreationmethod          = get_string("creationmethod", "blended");
 	$strbyhand                  = get_string("byhand", "blended");
 	$strrandomly                = get_string("randomly", "blended");
@@ -100,7 +100,7 @@ require_once ("$CFG->libdir/filelib.php");
 // Print the page header ---------------------------------------------------------
         // show headings and menus of page-----------------------------------------
 	$url = new moodle_url ( '/mod/blended/teams/introteams.php', array (	
-		'id' => $id,
+		'id' => $id,'itemid'=>$itemid
 	) );
 	$PAGE->set_url ( $url );
 	$PAGE->set_title ( format_string ( $blended->name ) );
@@ -108,25 +108,26 @@ require_once ("$CFG->libdir/filelib.php");
 	$PAGE->set_pagelayout ( 'standard' );
 	$link=new moodle_url("grades.php",array('id'=>$id));;
 	$PAGE->navbar->add($strteamsmanagementpage,$link);
-	$PAGE->navbar->add('Gestión de Equipos');
+	$PAGE->navbar->add($strintroteamspage);
 	echo $OUTPUT->header ();
 
 // Print the main part of the page -----------------------------------------------
-    $heading= format_string($strintrogradepage );
+    $heading= format_string($strintroteamspage);
+    $subheading='';
     if ($item){
     $module_link = blended_get_item_html_title($item);
     $grouping = blended_get_grouping($item, $blended);
-    $heading .= ": ". $module_link;
+    $subheading .= get_string('gradeassignments','blended')." ". $module_link;
     }
     if (isset($grouping) && $grouping){
         $groupingid=$grouping->id;
-        $heading.= " ".get_string('teams_from', 'blended') .
+        $subheading.= " ".get_string('teams_from', 'blended') ." ".
         $OUTPUT->action_link(new moodle_url('/group/overview.php', array('id' => $course->id)), $grouping->name);
     }else{
         $groupingid=null;
     }
- echo $OUTPUT->heading($heading);
-       
+ echo $OUTPUT->heading($heading.$OUTPUT->help_icon ( 'introteamspage', 'blended' ));
+ echo $OUTPUT->box($subheading);
 
 //Elegir o crear AGRUPAMIENTO-------------------------------------------------------
 //Elegir AGRUPAMIENTO existente----------------------------
@@ -221,13 +222,9 @@ require_once ("$CFG->libdir/filelib.php");
         
 // Finish the page -------------------------------------------------
 
-echo "<BR><BR><center>";
-echo $OUTPUT->help_icon ( 'introteams', 'blended' );
-echo "</center>";
+
 echo $OUTPUT->footer ();
-
 ?>
-
 <br />
 <script type="text/javascript">
 

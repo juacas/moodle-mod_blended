@@ -169,5 +169,6 @@ if ($CFG->version >= 2014051200) {
 		}	
 	}
 
-        echo $OUTPUT->continue_button(new moodle_url('introgrades.php',array('id'=>$id,'itemid'=>$item_id)));
-echo $OUTPUT->footer ();
+//        echo $OUTPUT->continue_button(new moodle_url('introgrades.php',array('id'=>$id,'itemid'=>$item_id)));
+//echo $OUTPUT->footer ();
+        redirect(new moodle_url('introgrades.php',array('id'=>$id,'itemid'=>$item_id)));

@@ -104,38 +104,40 @@ $PAGE->navbar->add($strintrogradepage);
 echo $OUTPUT->header();
 
 // Print the main part of the page ----------------------------------
-
-echo $OUTPUT->spacer(array('height' => 20));
+echo $OUTPUT->heading(format_string($strintrogradepage).$OUTPUT->help_icon('introgrades', 'blended'));
 $module_link = blended_get_item_html_title($item);
 $grouping = blended_get_grouping($item, $blended);
 
-$heading =format_string($strintrogradepage . ": ") . $module_link;
+$subheading = get_string('gradeassignments','blended') . $module_link;
 if ($grouping){
-$heading.=" ". get_string('teams_from', 'blended').$OUTPUT->action_link(new moodle_url('/group/overview.php', array('id' => $course->id)), $grouping->name);
+$subheading.=" ". get_string('teams_from', 'blended')." ".$OUTPUT->action_link(new moodle_url('/group/overview.php', array('id' => $course->id)), $grouping->name);
 }
-echo $OUTPUT->heading($heading,3);
+echo $subheading;
+echo "<br/>";
+echo $OUTPUT->spacer(array('height' => 20));
+
 //Elegir AGRUPAMIENTO existente----------------------------
 //Compruebo si existe algun agrupamiento:
-if ($groupings = groups_get_all_groupings($course->id)) {
-    $selected_groupingid = blended_get_groupingid($item);
+//if ($groupings = groups_get_all_groupings($course->id)) {
+//    $selected_groupingid = blended_get_groupingid($item);
+//
+//    //Se muestran los agrupamientos existentes mediante un select:		
+//    $url1 = "createTeams.php";
+//    echo "<form name=\"f1\" action=\"$url1\" method=\"GET\">";
+//    echo "<select name=\"groupingid\">";
+//    foreach ($groupings as $i => $grouping_option) {
+//        $selected = $i == $selected_groupingid ? 'selected="selected"' : '';
+//        echo "<option value=\"$i\" $selected >$grouping_option->name</option>";
+//    }
+//    echo "</select>";
+//    echo "<input type=\"submit\" value=\"" . get_string('select_grouping', 'blended') . "\">";
+//    echo "<input type=\"hidden\" name=\"id\" value=\"$cm->id\">";
+//    echo "<input type=\"hidden\" name=\"itemid\" value=\"$item_id\">";
+//    echo "<input type=\"hidden\" name=\"action\" value=\"select_grouping\">";
+//    echo "</form>";
+//}
 
-    //Se muestran los agrupamientos existentes mediante un select:		
-    $url1 = "createTeams.php";
-    echo "<form name=\"f1\" action=\"$url1\" method=\"GET\">";
-    echo "<select name=\"groupingid\">";
-    foreach ($groupings as $i => $grouping_option) {
-        $selected = $i == $selected_groupingid ? 'selected="selected"' : '';
-        echo "<option value=\"$i\" $selected >$grouping_option->name</option>";
-    }
-    echo "</select>";
-    echo "<input type=\"submit\" value=\"" . get_string('select_grouping', 'blended') . "\">";
-    echo "<input type=\"hidden\" name=\"id\" value=\"$cm->id\">";
-    echo "<input type=\"hidden\" name=\"itemid\" value=\"$item_id\">";
-    echo "<input type=\"hidden\" name=\"action\" value=\"select_grouping\">";
-    echo "</form>";
-}
-
-echo'</br></br>';
+echo'</br>';
 
 
 echo $OUTPUT->spacer(array('height' => 30));
@@ -147,8 +149,8 @@ echo "<form method=\"post\" action=\"$url1\" name=\"teamsform\" id =\"teamsform\
 $table = blended_generate_groups_table($item, $blended);
 echo \html_writer::table($table);
 echo $OUTPUT->spacer(array('height' => 30));
-echo '<label for="deleteEmpty">' . get_string('deleteemptyteams', 'blended');
-echo '<input type="checkbox" name="deleteEmpty" value="false"/></label>';
+echo '<label for="deleteEmpty">' ;
+echo '<input type="checkbox" name="deleteEmpty" value="false"/>'.get_string('deleteemptyteams', 'blended').'</label>';
 echo '<table align="center">';
 echo "<tr><td><input type=\"submit\" value=\"" . $strsendgrades . "\" id=\"update\" /></td>";
 echo '</table>';
@@ -163,9 +165,7 @@ echo "</form>";
 }
 // Finish the page -------------------------------------------------
 
-echo "<BR><BR><center>";
-echo $OUTPUT->help_icon('introgrades', 'blended');
-echo "</center>";
+
 echo $OUTPUT->footer();
 ?>
 
