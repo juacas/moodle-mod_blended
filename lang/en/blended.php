@@ -1,6 +1,40 @@
 <?PHP 
-$string['modulename']       = 'Blended';
+$string['modulename'] = 'Blended';
+$string['pluginname'] = 'Blended';
 $string['modulenameplural'] = 'Blendeds';
+
+//update.php
+$string['name'] = 'Name';
+$string['idmethod'] = 'Identification method';
+$string['idmethod_help'] = 'Users can be identified by means of: internal number, user ID field of their profile and any personalized field created by Moodle Administrator';
+$string['required'] = 'Required';
+$string['description'] = 'Descripction';
+$string['coded'] = 'Coded';
+$string['plain'] = 'Clear';
+$string['codebartype'] = 'Codebar types';
+$string['codebartype_help'] = 'Select the type of codebar images to be used as visual identifiers for users and forms.';
+$string['OMRenable']  = 'Enable OMR sub-module.';
+$string['OMRenableLabel'] = 'OMR enabled';
+$string['numbercols'] = 'Number of columns';
+$string['numbercols_help'] = 'Number of columns of the quiz form in printed page';
+$string['idnumber']  = 'Moodle\'s id-number';
+$string['userid'] = 'User internal ID';
+$string['idtype'] = 'Identifier';
+$string['idtype_help'] = 'Types: <ul><li>Internal Id: <i>Moodle</i> internal id for each user.</li>
+        <li>User ID: ID Number field from the user\'s profile.</li>
+<br>    <li>Personalized ID: profile field created by the administrators.</li>';
+$string['lengthuserinfo'] = 'Length of the Customized ID';
+$string['lengthuserinfo_help'] = 'If you have selected an Customized Identifier, this is the number of significant characters used for identification.';
+$string['byteacher'] = 'by the teacher';
+$string['bystudents'] = 'by the students';
+$string['bystudentswithleaders']= 'by the students with a leader';
+$string['teammethod'] = 'Team creation';
+$string['teammethod_help'] = 'Select if you allow or not the students to manage their workteam composition.';
+$string['defaultnumteams'] = 'Default team number';
+$string['defaultnummembers'] = 'Default member number';
+$string['defaultnummembers_help'] = 'Set the default maximum number of members allowed in a workteam.';
+$string['any'] = 'any';
+
 
 //view.php
 $string['mainpage_help'] = "Blended is a module that helps to undertake presential activities in Moodle.";
@@ -75,7 +109,8 @@ $string['noinserted'] = '<center>No operation has been done.</center>';
 
 
 //grades.php
-$string['name'] = 'Assignment name';
+$string['nameassigment'] = 'Assignment name';
+$string['gradeassignments'] = 'Assignment to grade:';
 $string['duedate'] = 'Due date: ';
 $string['graded'] = 'Graded';
 $string['no'] = 'No';
@@ -87,37 +122,42 @@ $string['resetteams'] = 'Reset teams';
 $string['createteams2'] = 'Create/Modify/Delete teams';
 $string['teamsmanagementpagedesc'] = 'Create teams for each assignment, manual or randomly.';
 $string['pagehelp'] = 'Page help contents';
+$string['itemsforgrading'] = 'Items for grading';
 
 
 //introgrades.php
-$string['introgrades'] = 'Introduce the grades'; // Verificar
+$string['introgradepage'] = 'Insert grades';  
+$string['introgrades'] = 'Introduce grades'; // Verificar
 $string['sendgrades'] = 'Save grades';
 $string['teamsfromassignment'] = 'Teams created for activity: ';
 $string['existinglinkedteams'] = 'There are existing teams for the assignment: $a already linked to another assignment.<br>The assignment: $a cannot be linked to the assignment: ';
 $string['existingteams'] = 'There are existing teams for the assignment: $a.<br> Unable to use for the assignment: $a the created teams for the assignment:  ';
 $string['teams_from'] = 'teams taken from';
-$string['idteam'] = 'Team:';
-$string['idmembers'] = 'Identifiers:';
+$string['idteam'] = 'Team';
+$string['idmembers'] = 'Students';
 $string['viewalertsdesc'] = 'Alert Messages';
 $string['rewritegrades'] = '<center>¿Overwrite?<br>Individual grade<br>is different from group grade.</center>';
-$string['grade'] = 'Grade:';
+$string['grade'] = 'Grade';
 $string['nograded'] = '-';
+$string['teamnotgraded'] = 'No graded';
+$string['teamempty'] = 'Empty team';
 $string['deleteemptyteams'] = 'Remove teams if empty';
 
 
 //introteams.php
+$string['introteamspage'] = 'Assign groups to assigment';
 $string['introteams'] = 'Team management for ';
-$string['creationmethod'] = 'Team creation method: ';
+$string['creationmethod'] = 'Team creation method:';
 $string['byhand'] = 'Manual';
 $string['randomly'] = 'Random';
 $string['studentsselection'] = 'Students selection:';
 $string['activestudents'] = 'Only active';
 $string['allstudents'] = 'All';
 $string['nummembers'] = 'Number of members in a team:';
-$string['introgradepage'] = 'Insert grades';  
 $string['resetgroups'] = 'Reset or create a set of teams';
 $string['select_grouping'] = 'Choose the set of groups to be used in the activity';
 $string['introteams'] = 'Team management for ';
+
 
 //saveteamsgrades.php
 $string['user_regraded'] = '{$a->userlink} regraded from "{$a->prev_grade}" to "{$a->new_grade}".';
@@ -129,14 +169,13 @@ $string['selectgroupingnotify'] = 'Selected a new grouping {$a->grouping_name} f
 
 
 //labels.php
-$string['labels'] = 'Labels'; //Verificar texto
 $string['labelspagedescr1'] = 'Select the student the number of labels by row and column that will be printed in a page';
 $string['labelspagedescr2'] = 'Select the number of labels by row and column that will be printed in a page';
 $string['numrows'] = 'Number of columns: ';
 $string['numcolumns'] = 'Number of rows: ';
 $string['printlabels'] = 'Print Labels';
 $string['pageformat'] = 'Page Format';
-$string['printforone'] = 'Print for one student.';
+$string['printforone'] = 'Print for one student';
 $string['layoutmethod'] = 'Methods for layout labels';
 $string['oneforeachactive'] = 'One label for each active student in the course.';
 $string['oneforeachenrolled'] = 'One label for each student enrolled in the course.';
@@ -150,12 +189,49 @@ $string['margin_top_mm'] = 'Margin Top mm (Measure carefully in your stickers sh
 $string['margin_bottom_mm'] = 'Margin Bottom mm (Measure carefully in your stickers sheet)';
 $string['margin_right_mm'] = 'Margin Right mm (Measure carefully in your stickers sheet)';
 $string['margin_left_mm'] = 'Margin Left mm (Measure carefully in your stickers sheet)';
+$string['cantprintlabel'] = 'Unable to print labels until the student inserts DNI field.';
+$string['cantprintlabel2'] = 'Unable to print labels until the student inserts Customized ID field.';
 
 
 $string['selectitems'] = 'Only show selected items. (All if none selected)';
 $string['selectitems_help'] = 'If you want to use Blended only for grading a number of items, you can select here which ones are activated.';
 
 
-//Files help
+//Permissions
+$string['blended:blended'] = 'Blended';
+$string['blended:createscannedjob'] = 'Create scanned job';
+$string['blended:deleteall'] = 'Delete all';
+$string['blended:deletejob'] = 'Delete job';
+$string['blended:deletequiz'] = 'Delete assignment';
+$string['blended:deletescanjob'] = 'Delete scanned job';
+$string['blended:editresults'] = 'Edit results'; 
+$string['blended:evaluatequiz'] = 'Evaluate assignment';
+$string['blended:introgrades'] = 'Insert grades';
+$string['blended:introteams'] = 'Insert teams';
+$string['blended:launchjob'] = 'Launch job';
+$string['blended:managealljobs'] = 'Manage all jobs'; 
+$string['blended:printassignmentpage'] = 'Print assignment page';
+$string['blended:printlabels'] = 'Prin labels';
+$string['blended:printquizes'] = 'Print assignments';
+$string['blended:reviewresults'] = 'Review results';
+$string['blended:rolelinks'] = 'Role links'; 
+$string['blended:selectoneamongallstudents'] = 'Select one among all students';
+$string['blended:signupteam'] = 'Sign up team'; 
+$string['blended:view'] = 'View';
+$string['blended:viewalerts'] = 'View alerts'; 
+$string['blended:viewimage'] = 'View image'; 
+$string['blended:viewscannedjobs'] = 'View scanned jobs'; 
+$string['blended:viewstatus'] = 'View status'; 
+$string['blended:viewstatusdetails'] = 'View status details';
 
+
+//Files help
+$string['labelspage_help'] = 'This page enables an user to generate label sheets for the students in the course.
+								<br>The students can choose the page format and what students want labels are made.';
+$string['assignmentpage_help'] = 'This page allows you to select the activity and the list of students who want to generate the task page.';
+$string['gradepage_help'] = 'This page shows a list of the course activities with their grouping and the status of their assessment. In addition, the teacher can also modify the assigned grouping to an activity.';
+$string['introteamspage_help'] = 'This page allows the teacher to create (manual or randonmly) a new grouping for an activity.';
+$string['introgradespage_help'] = 'This page allows the teacher to insert the grades of an activity for each team. In addition, the teacher also can create and modify the name and members of the teams.';
+$string['selectassignmentpage_help'] = 'selectassignmentpage_help';
+$string['signupteampage_help'] = 'signupteampage_help';
 ?>
