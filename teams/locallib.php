@@ -717,7 +717,7 @@ function blended_insert_teams($teams, $course, $blended = null, $leader = null, 
 }
 
 function blended_create_unique_grouping($grouping_name, $course) {
-    $data = new object();
+    $data = new stdClass();
 
     if ($grouping_name == '') {
         $grouping_name = get_string('newgrouping', 'group');
@@ -730,7 +730,7 @@ function blended_create_unique_grouping($grouping_name, $course) {
     $count = 1;
     do {
         $prev_grouping = groups_get_grouping_by_name($course->id, $data->name);
-        if ($prev_grouping) {
+        if ($prev_grouping!==0) {
             $data->name = $grouping_name . " ($count)";
         } else {
             $data->name = $grouping_name;
@@ -761,10 +761,11 @@ function blended_assign_grouping(grade_item $item, stdClass $grouping, $leader, 
     $data = new stdClass();
     $data->id_item = $item->id;
     $data->id_grouping = $grouping->id;
-    $data->leader = $leader;
-    $data->maxmembers = $maxmembers;
-
     $DB->insert_record('blended_assign_grouping', $data);
+    if ($item->itemtype =='mod' && $item->itemmodule=='assign'){
+//         $cm = get_fast_modinfo($item->courseid)->instances[$item->itemmodule][$item->iteminstance];
+         $DB->set_field('assign','teamsubmissiongroupingid',$grouping->id,array('id'=>$item->iteminstance));
+    }
 }
 
 /**
@@ -938,19 +939,22 @@ global $OUTPUT;
         }
         global $DB;
         //Numero de equipos definidos
-        $teams = blended_get_teams($item, false);
-
-        $numteams = count($teams);
+     
        
         //Si no hay equipos la tarea no se podr� calificar
-        if ($numteams == 0) {
-            $grade = null;
-            $graded = null;
-            $grouping_name=null;
-        }
-        //Si hay equipos
-        else {
-            $grouping_name = blended_get_grouping($item, $blended)->name;           
+//        if ($numteams == 0) {
+//            $grade = null;
+//            $graded = null;
+////            $grouping_name=null;
+//        }
+//        //Si hay equipos
+//        else 
+         $grouping=blended_get_grouping($item, $blended);
+         $teams = blended_get_teams($item, false);
+         $numteams = count($teams);
+         if ($grouping)
+            {           
+            $grouping_name = $grouping->name;           
             $gradeurl = new moodle_url('/mod/blended/teams/introgrades.php', array('id' => $cm->id, 'itemid' => $item->id));
 
             //Tarea no calificada
@@ -972,6 +976,13 @@ global $OUTPUT;
             $icon = $OUTPUT->pix_url('i/grades');
             $grade = "<a $class href=\"$gradeurl\"><img src=\"$icon\"/></a>$gradestr";
            
+        }
+        else
+        {
+            $grouping_name=null;
+            $graded=null;
+            $grade=null;
+            $numteams=null;
         }
 
         $assignmentlink = blended_get_item_html_title($item);
@@ -1018,10 +1029,36 @@ function blended_item_is_visible($item) {
 function blended_get_groupingid(grade_item $item) {
     global $DB;
     $agrupamiento_tarea = $DB->get_record('blended_assign_grouping', array('id_item' => $item->id));
-    if ($agrupamiento_tarea) {
-        return $agrupamiento_tarea->id_grouping;
-    } else {
-        return false;
+    if ($item->itemtype=='mod' && $item->itemmodule=='assign'){
+//            $cm = get_fast_modinfo($item->courseid)->instances[$item->itemmodule][$item->iteminstance];
+            $assign_teams_groupingid = $DB->get_field('assign','teamsubmissiongroupingid',array('id'=>$item->iteminstance));
+            if ($assign_teams_groupingid && $agrupamiento_tarea && $agrupamiento_tarea->id_grouping!=$assign_teams_groupingid){ // user changed it in assign module
+                $DB->delete_records('blended_assign_grouping',array('id_item'=>$item->id));
+                $data = new stdClass();
+                $data->id_item = $item->id;
+                $data->id_grouping = $assign_teams_groupingid;
+                $DB->insert_record('blended_assign_grouping', $data);
+                return $assign_teams_groupingid;
+            }else if (!$agrupamiento_tarea && $assign_teams_groupingid){
+                $DB->delete_records('blended_assign_grouping',array('id_item'=>$item->id));
+                $data = new stdClass();
+                $data->id_item = $item->id;
+                $data->id_grouping = $assign_teams_groupingid;
+                $DB->insert_record('blended_assign_grouping', $data);
+                return $assign_teams_groupingid;
+            }else if ($agrupamiento_tarea && !$assign_teams_groupingid){
+                return $agrupamiento_tarea->id_grouping;
+            }else{
+            return $assign_teams_groupingid;
+            }
+    }
+    else{ // other modules
+        if ($agrupamiento_tarea) {
+            return $agrupamiento_tarea->id_grouping;
+        } else {
+            
+            return false;
+        }
     }
 }
 
@@ -1034,10 +1071,23 @@ function blended_get_groupingid(grade_item $item) {
 function blended_get_grouping(grade_item $item, $blended) {
     global $DB;
     $agrupamiento_tarea = $DB->get_record('blended_assign_grouping', array('id_item' => $item->id));
-    if (!$agrupamiento_tarea){
-        return false;
+    if (!$agrupamiento_tarea){ // No hemos asignado en blended
+        if ($item->itemtype=='mod' && $item->itemmodule=='assign'){ // hay una asignación en moodle
+//            $modgrouping = $DB->get_field('course_modules','groupingid',array('instance'=>$item->iteminstance));
+            $modgrouping = $DB->get_field('assign','teamsubmissiongroupingid',array('id'=>$item->iteminstance));
+            if ($modgrouping){
+                $agrupamiento_tarea = new stdClass();
+                $agrupamiento_tarea->id_grouping;
+                $grouping = groups_get_grouping_by_id($item->courseid, $agrupamiento_tarea->id_grouping);
+                blended_assign_grouping($item, $agrupamiento_tarea, null, $blended->nummembers);
+            }
+        }else{ // no es mod y no está configurado con blended
+            return false;
+        }
     }
+    if (!isset($grouping)){
     $grouping = groups_get_grouping_by_id($item->courseid, $agrupamiento_tarea->id_grouping);
+    }
     
     if ($grouping) {
         $grouping->maxmembers = isset($agrupamiento_tarea->maxmembers) ? $agrupamiento_tarea->maxmembers : $blended->nummembers;

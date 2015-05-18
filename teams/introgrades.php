@@ -87,7 +87,7 @@ $existinglinkedteams = false;
 //$members = blended_get_teams_members ( null, $item_id, null, $blended ); // unused
 // Get the strings --------------------------------------------------
 $strgradepage = get_string("gradepage", "blended");
-$strintrogradepage = get_string('introgradepage', 'blended');
+$strintrogradepage = get_string('introgradespage', 'blended');
 
 $strsendgrades = get_string("sendgrades", "blended");
 $strteamsfromassignment = get_string('teamsfromassignment', 'blended');
@@ -104,7 +104,7 @@ $PAGE->navbar->add($strintrogradepage);
 echo $OUTPUT->header();
 
 // Print the main part of the page ----------------------------------
-echo $OUTPUT->heading(format_string($strintrogradepage).$OUTPUT->help_icon('introgrades', 'blended'));
+echo $OUTPUT->heading(format_string($strintrogradepage).$OUTPUT->help_icon('introgradespage', 'blended'));
 $module_link = blended_get_item_html_title($item);
 $grouping = blended_get_grouping($item, $blended);
 

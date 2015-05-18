@@ -97,7 +97,7 @@
 // Print the main part of the page -----------------------------------------------
 
     echo $OUTPUT->spacer(array('height'=>20));
-    echo $OUTPUT->heading(format_string($strassignmentpage));
+    echo $OUTPUT->heading(format_string($strassignmentpage).$OUTPUT->help_icon('assignmentpage','blended'));
     echo'<center>';
     echo $OUTPUT->box(format_text($strassignpagedescr), 'generalbox', 'intro');
     echo'</center>';
@@ -274,10 +274,5 @@
     
     // Fin formulario
     echo "</form>";
-    
-    
-    echo "<center>";
-   	echo $OUTPUT->help_icon('assignmentpage','blended');
-    echo "</center>";
     
    echo $OUTPUT->footer();

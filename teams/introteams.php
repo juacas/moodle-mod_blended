@@ -95,7 +95,6 @@ require_once ("$CFG->libdir/filelib.php");
 	$strnumteams                = get_string('numteams', 'blended');
 	$strnummembers              = get_string('nummembers', 'blended');
         $strgradepage = get_string("gradepage", "blended");
-        $strintrogradepage = get_string('introgradepage', 'blended');
     
 // Print the page header ---------------------------------------------------------
         // show headings and menus of page-----------------------------------------
@@ -149,12 +148,12 @@ require_once ("$CFG->libdir/filelib.php");
 				echo "<option value=\"$i\" $selected >$grouping->name</option>";
 			}
 			echo "</select>";
-			echo "<input type='submit' value='continuar'>";
+			echo "<input type='submit' value='".get_string('change_groups_button','blended')."'>";
 			echo "<input type='hidden' name='id' value='".$cm->id."'>";
 			echo "<input type='hidden' name='itemid' value='".$itemid."'>";
 			echo "<input type='hidden' name='action' value='select_grouping'>";
 			echo "</form>";
-                                echo $OUTPUT->box_end();
+                        echo $OUTPUT->box_end();
 
 		}		
 		//Crear un nuevo AGRUPAMIENTO-----------------------------------

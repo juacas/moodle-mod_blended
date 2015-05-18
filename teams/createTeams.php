@@ -170,6 +170,7 @@ require_once ($CFG->libdir . '/filelib.php');
                $a->grouping_name= $grouping->name;
                $a->num_teams = count($teams);
                $strcreatenewgroupingnotify = get_string('newgroupingnotify','blended',$a);
+               
                echo $OUTPUT->box($strcreatenewgroupingnotify);
 	}else	
 	/*Si el tipo de acci�n recogida es 'sobreescribir' procedente de updateTeams,php,

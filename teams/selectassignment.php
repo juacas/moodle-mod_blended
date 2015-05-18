@@ -76,7 +76,7 @@ require_once ($CFG->dirroot . '/grade/lib.php');
 
 // Get the strings ---------------------------------------------------------------
 
-	$strselectassignpage = get_string ( 'selectassignpage', 'blended' );
+	$strselectassignpage = get_string ( 'selectassignmentpage', 'blended' );
 	$strnone = get_string ( 'noselected', 'blended' );
 
 // Print the page header ---------------------------------------------------------
@@ -87,7 +87,7 @@ require_once ($CFG->dirroot . '/grade/lib.php');
 // Print the main part of the page -----------------------------------------------
 
 	echo $OUTPUT->spacer ( array ('height' => 20 ) );
-	echo $OUTPUT->heading ( format_string ( $strselectassignpage ).$OUTPUT->help_icon ( 'pagehelp', 'blended' ) );
+	echo $OUTPUT->heading ( format_string ( $strselectassignpage ).$OUTPUT->help_icon ( 'selectassignmentpage', 'blended' ) );
 	echo $OUTPUT->spacer ( array ('height' => 20 ) );
 
 // Imprimimos el formulario por pantalla -----------------------------------------

@@ -76,7 +76,6 @@ require_once ("locallib.php");
 
 
 // Get the strings ---------------------------------------------------------------
-	$strselectassignpage = get_string ( 'selectassignpage', 'blended' );
 	
 	$strsignupteampage = get_string ( 'signupteampage', 'blended' );
 	$strsignupteam = get_string ( 'signupteam', 'blended' );
@@ -88,12 +87,12 @@ require_once ("locallib.php");
 
 // Print the main part of the page -----------------------------------------------
 	$link="selectassignment.php?id=".$cm->id;
-	$PAGE->navbar->add($strselectassignpage,$link);
+	$PAGE->navbar->add($strsignupteampage,$link);
 	$PAGE->navbar->add('Inscribirse');
 	echo $OUTPUT->header ();
 	
 	echo $OUTPUT->spacer ( array ('height' => 20 ) );
-	echo $OUTPUT->heading ( format_string ( $strsignupteampage ).' '.  blended_get_item_name($item) );
+	echo $OUTPUT->heading ( format_string ( $strsignupteampage ).' '.  blended_get_item_name($item). $OUTPUT->help_icon ( 'signupteampage', 'blended' ));
 	echo $OUTPUT->spacer ( array ('height' => 20 ) );
 
 // Get all teams in the current activity---------------------------------------
@@ -356,10 +355,6 @@ require_once ("locallib.php");
 		}
 
 	}
-	
-	echo "<BR><BR><center>";
-	echo $OUTPUT->help_icon ( 'signupteam', 'blended' );
-	echo "</center>";
 	
 	// Finish the page --------------------------------------------------
 	echo $OUTPUT->footer ();

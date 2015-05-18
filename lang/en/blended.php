@@ -11,8 +11,8 @@ $string['required'] = 'Required';
 $string['description'] = 'Descripction';
 $string['coded'] = 'Coded';
 $string['plain'] = 'Clear';
-$string['codebartype'] = 'Codebar types';
-$string['codebartype_help'] = 'Select the type of codebar images to be used as visual identifiers for users and forms.';
+$string['codebartype'] = 'CodSelectebar types';
+$string['codebartype_help'] = ' the type of codebar images to be used as visual identifiers for users and forms.';
 $string['OMRenable']  = 'Enable OMR sub-module.';
 $string['OMRenableLabel'] = 'OMR enabled';
 $string['numbercols'] = 'Number of columns';
@@ -83,7 +83,6 @@ $string['nouserinfodata']  = 'With (#) the students that have not introduced the
 $string['noselected'] = 'Select: ';
 $string['printassignmentpage'] = 'Print assignment page';
 $string['noassignments'] = 'There are no assignments created in this course.';
-$string['selectassignment'] = 'Select activity'; // Verificar si no coincide con ['assignments
 
 
 //signupteam.php
@@ -126,7 +125,7 @@ $string['itemsforgrading'] = 'Items for grading';
 
 
 //introgrades.php
-$string['introgradepage'] = 'Insert grades';  
+$string['introgradespage'] = 'Insert grades';  
 $string['introgrades'] = 'Introduce grades'; // Verificar
 $string['sendgrades'] = 'Save grades';
 $string['teamsfromassignment'] = 'Teams created for activity: ';
@@ -136,7 +135,7 @@ $string['teams_from'] = 'teams taken from';
 $string['idteam'] = 'Team';
 $string['idmembers'] = 'Students';
 $string['viewalertsdesc'] = 'Alert Messages';
-$string['rewritegrades'] = '<center>�Overwrite?<br>Individual grade<br>is different from group grade.</center>';
+$string['rewritegrades'] = '<center>�Overwrite?<br>Individual grade<br>is different from group grade.</center>';
 $string['grade'] = 'Grade';
 $string['nograded'] = '-';
 $string['teamnotgraded'] = 'No graded';
@@ -156,6 +155,7 @@ $string['allstudents'] = 'All';
 $string['nummembers'] = 'Number of members in a team:';
 $string['resetgroups'] = 'Reset or create a set of teams';
 $string['select_grouping'] = 'Choose the set of groups to be used in the activity';
+$string['change_groups_button'] = 'Change to this set of groups.';
 $string['introteams'] = 'Team management for ';
 
 
@@ -165,7 +165,6 @@ $string['user_regraded'] = '{$a->userlink} regraded from "{$a->prev_grade}" to "
 
 //createTeams.php
 $string['newgroupingnotify'] = 'Created a new grouping {$a->grouping_name} with {$a->num_teams} empty teams.'; 
-$string['selectgroupingnotify'] = 'Selected a new grouping {$a->grouping_name} for {$a->item}.';
 
 
 //labels.php
@@ -195,7 +194,164 @@ $string['cantprintlabel2'] = 'Unable to print labels until the student inserts C
 
 $string['selectitems'] = 'Only show selected items. (All if none selected)';
 $string['selectitems_help'] = 'If you want to use Blended only for grading a number of items, you can select here which ones are activated.';
+//Descripciones de pagina
+$string['assignmentpagedescr']     = 'Select the assignment page to print ';
+$string['assignmentpagedescr2']    = 'Assignment page: ';
+$string['teamsmanagementpagedesc'] = 'Create teams for each assignment, manually or randomly.';
+$string['gradepagedescr']          = 'Select the assignment to grade';
+$string['signupteampagedesc']      = 'Inscribase en un equipo para dicha tarea. Sólo el que crea el equipo puede eliminar miembros del mismo.';
+$string['scanpagedesc']            = 'Upload or select a file to be processed by the OMR detector. 
+<BR> The source file must be a PDF file or a ZIP file containing JPG or TIF formatted images.
+<BR> The jobs will be automatically processed by Moodle. This will take a few minutes.  
+You can check the results in the \"Supervise the state of the questionnaires\" section.';
+$string['correctionpagedesc']      = 'Select a job to show.';
+$string['imagepagedesc']      	   = 'Selected Image';
+$string['scannedjobpagedesc']      = 'Results of the job <a href=\"$a->href\">$a->hrefText</a>';
+$string['revisionpagedesc']        = 'These are the evaluated quizzes found in this course.';
+$string['evaluatepagedesc']        = 'Your quiz has been graded. Evaluation report: <a href=\"$a->href\">$a->hrefText</a>.
+									  <BR>To refresh the grade, use the regrade link if needed.';
+$string['showdetailspagedesc']     = 'Results of the quiz number $a->acode perteneciente al trabajo <a href=\"$a->href\">$a->hrefText</a>';
+$string['reviewdetailspagedesc']     = 'Details of the selected quiz';
 
+$string['deletescanjobdesc'] 		= 'WARNING: you are about to delete the job $a->jobname. This will erase any quiz or image  
+										belonging to the processing detection of the job, so as every evaluation result.
+										<BR> Original PDF, uploaded files an moodle archive files will NOT be deleted.
+										<BR><BR> If you really want to proceed, press Delete button. ';
+
+
+$string['deletequizdesc'] 		= 'WARNING: you are about to delete the quiz number $a->acode. Any correction or evaluation data will also be deleted.
+									<BR><BR> If you really want to proceed, press Delete button.';
+
+$string['deleteimgdesc'] 		= 'WARNING: you are about to delete the image $a->imgout. This image may be an unrecognized page of a quiz you probably want to evaluate. <BR><BR> If you really want to proceed, press Delete button.';
+
+$string['jobstatusdesc'] = 'Estado del trabajo seleccionado. Para ver los detalles pulse el enlace correspondiente.<BR> (Sólo administradores o usuarios con permisos)';
+$string['viewalertsdesc'] 	= 'Alert Messages';
+$string['activitycodepagedesc'] 	= 'Cuestionario con activitycode no detectado o erróneo.';
+
+//Labelspage.php
+$string['labelspagedescr1']      = 'Select the student the number of labels by row and column that will be printed in a page';
+$string['labelspagedescr2']      = 'Select the number of labels by row and column that will be printed in a page';
+$string['numrows']               = 'Number of columns: ';
+$string['numcolumns']            = 'Number of rows: ';
+$string['noselected']            = 'Select: ';
+$string['noactiveuser']          = '¡ With (*) the students are not active in the course !';
+$string['noidnumber']            = '¡ With (**) the students have not introduced their DNI number !';
+$string['nouserinfodata']        = '¡ With (#) the students that have not introduced their PERSONALIZED ID !';
+$string['printlabels']           = 'Print Labels';
+$string['cantprintlabel']        = ' Unable to print labels until the student inserts DNI field.';
+$string['cantprintlabel2']       = ' Unable to print labels until the student inserts PERSONALIZED ID field.';
+$string['numrowsnotselected']    = 'Number of rows not selected';
+$string['numcolumnsnotselected'] = 'Number of columns not selected';
+$string['pageformat']			 = 'Page Format';
+$string['margin_top_mm']		 = 'Margin Top mm (Measure carefully in your stickers sheet)';
+$string['margin_bottom_mm']		 = 'Margin Bottom mm (Measure carefully in your stickers sheet)';
+$string['margin_right_mm']		 = 'Margin Right mm (Measure carefully in your stickers sheet)';
+$string['margin_left_mm']		 = 'Margin Left mm (Measure carefully in your stickers sheet)';
+$string['printforone']			 = 'Print for one student.';
+$string['layoutmethod']			 = 'Methods for layout labels';
+$string['oneforeachactive']		 = 'One label for each active student in the course.';
+$string['oneforeachenrolled']	 = 'One label for each student enrolled in the course.';
+$string['fullpages']			 = 'Full pages of labels for the students selected in the list on the left.';
+$string['labelsformat']			 = 'Course labels format';
+$string['identifyforhumans']	 = 'Identify labels for humans';
+$string['donotidentify']		 = 'Do not identify';
+$string['showreadableid']		 = 'Show Human-readable id';
+$string['showfullname']			 = 'Show Fullname';
+
+//Assignmentpage.php
+$string['assignments']              = 'Select activity: ';
+$string['defaultassignment']        = 'Assignmnent: ';
+$string['user']                     = 'Student: ';
+$string['assignment']               = 'Assignment (if not in the list): ';
+$string['printassignmentpage']      = 'Print assignment page';
+$string['assignmentnotselected1']   = 'Assignment not selected and empty assignment name.';
+$string['usernotselected']          = 'User not selected.';
+$string['noassignments']            = 'There are no assignments created in this course.';
+$string['cantprintassignmentpage']  = ' Student ID required to print assignment page!';
+$string['cantprintassignmentpage2'] = ' Student PERSONALIZED ID required to print assignment page!';
+$string['noidnumber2']              = '¡ Missing ID !';
+
+//Grades.php
+$string['groupingnotselected'] = 'Set of teams to grade has not been selected.';
+$string['gradeassignments']       = 'Assignment to grade:';
+$string['teamassignment']         = 'Assignment from which extract the teams:';
+$string['numteams']               = 'Number of teams:';
+$string['teams_from']            = 'teams taken from';
+$string['deleteemptyteams']       = 'Remove teams if empty';
+$string['resetgroups']             = 'Reset or create a set of teams';
+$string['nummembers']             = 'Number of members in a team:';
+$string['gradeassignment']        = 'Grade assignment';
+
+//Introgrades.php
+$string['search']               = 'Search identifier:';
+$string['idteam']               = 'Team:';
+$string['idmembers']            = 'Identifiers:';
+$string['grade']                = 'Grade:';
+$string['nograded']             = '-';
+$string['sendgrades']           = 'Save grades';
+$string['teamsfromassignment']  = 'Teams created for activity: ';
+$string['rewritegrades']        = '<center>¿Overwrite?<br>Individual grade<br>is different from group grade.</center>';
+$string['confirmrewritegrades'] = 'Make sure you want to overwrite individual grade different from group grade. Procceed?';
+$string['checkbox']             = 'Uncheck the corresponding checkbox: ';
+$string['existinglinkedteams']  = 'There are existing teams for the assignment: $a already linked to another assignment.<br>The assignment: $a cannot be linked to the assignment: ';
+$string['existingteams']        = 'There are existing teams for the assignment: $a.<br> Unable to use for the assignment: $a the created teams for the assignment:  ';
+$string['alertgrade']   =  'The individual grade "{$a->grade}" differs from the team grade. This individual grade will be overwritten by team\'s grade.';
+
+//Save.php
+$string['save']       = 'Save';
+$string['inserted']   = '<center>Success!!</center>';
+$string['noinserted'] = '<center>No operation has been done.</center>';
+
+//Teamsmanagement.php
+$string['creationmethod']    = 'Team creation method: ';
+$string['byhand']            = 'Manual';
+$string['randomly']          = 'Random';
+$string['name']              = 'Assignment name';
+$string['assignmenttype']    = 'Assignment type';
+$string['duedate']           = 'Due date: ';
+$string['teams']             = 'Number of teams';
+$string['graded']            = 'Graded';
+$string['user_regraded']     = '{$a->userlink} regraded from "{$a->prev_grade}" to "{$a->new_grade}".';
+$string['resetteams']       = 'Reset teams';
+$string['createteams2']      = 'Create/Modify/Delete teams';
+$string['rewriteteams']      = 'Delete link <br> and create teams';
+$string['confirmrewrite']    = '¿Esta seguro de que desea eliminar la vinculación con la tarea y crear nuevos equipos?';
+$string['linked']            = '  linked to the asignment:  ';
+$string['linked2']           = '  linked to the assignment:  ';
+$string['no']                = 'No';
+$string['yes']               = 'Yes';
+$string['partially']         = 'Partially';
+$string['studentsselection'] = 'Students selection:';
+$string['activestudents']    = 'Only active';
+$string['allstudents']       = 'All';
+$string['newgroupingnotify'] = 'Created a new grouping {$a->grouping_name} with {$a->num_teams} empty teams.';
+$string['selectgroupingnotify'] = 'Selected a new grouping {$a->grouping_name} for {$a->item}.';
+//Introteams.php
+$string['gradeit']             = 'Grade teams';
+$string['introteams']          = 'Team management for ';
+$string['sendteams']           = 'Save teams';
+$string['withoutidnumber']     = '<br>Without ID number.';
+$string['withoutuserinfodata'] = '<br>Without Personalized ID.';
+$string['select_grouping']	   = 'Choose the set of groups to be used in the activity';
+
+//Signupteam.php
+$string['teamscount']             = 'Teams ({$a})';
+$string['teammembers']            = 'Team members';
+$string['membercount']            = 'Number of members';
+$string['newteam']                = 'Create a new team';
+$string['nameteam']               = 'Team name';
+$string['signupteampage2']        = 'Teams for the assignment: ';
+$string['deletemember']           = 'Delete members';
+$string['selectassignpage']       = 'Sign up team';
+$string['signupteam']             = 'Sign up team';
+$string['nodefinedteams']       ='There are still no teams defined.';
+$string['teamisfull']       = 'Team already full. You can select a new team';
+$string['assignmentnotselected3'] = 'Assignment not selected to sign up a team';
+$string['userisnotmember'] = 'User {$a} is not member of the team';
+$string['userremovedfromteam']='User {$a->username} removed from {$a->teamname}';
+$string['teamremoved']='Team {$a->name} removed';
+$string['userenrolledtoteam']='{$a->username} has been enrolled in team {$a->teamname}';
+$string['userpromotedtoleader']='User {$a->username} promoted to leader of team {$a->teamname}';
 
 //Permissions
 $string['blended:blended'] = 'Blended';

@@ -79,7 +79,6 @@
     
 // Get the strings --------------------------------------------------
     $strgradepage               = get_string("gradepage","blended");
-    $strname                    = get_string("name","blended");
     $strduedate                 = get_string("duedate", "blended");
     $strgraded                  = get_string("graded", "blended");
     $strno                      = get_string("no", "blended");
@@ -97,7 +96,7 @@
     echo $OUTPUT->spacer(array('height'=>20));
     echo $OUTPUT->heading(format_string(get_string('gradepage', 'blended')).$OUTPUT->help_icon('gradepage','blended'));
     echo'<center>';
-    echo $OUTPUT->box(format_text('Tareas a calificar: '), 'generalbox', 'intro');
+    echo $OUTPUT->box(format_text(get_string('itemsforgrading','blended')), 'generalbox', 'intro');
     echo'</center>';
     echo $OUTPUT->spacer(array('height'=>20));
    
