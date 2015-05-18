@@ -14,7 +14,7 @@
         <FIELD NAME="omrenabled" TYPE="int" LENGTH="1" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Flag of activation for OMR part."/>
         <FIELD NAME="idmethod" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Identification Method"/>
         <FIELD NAME="idtype" TYPE="char" LENGTH="10" NOTNULL="true" DEFAULT="1" SEQUENCE="false" COMMENT="Type of identifier. Field to be used to identify an user."/>
-        <FIELD NAME="codebartype" TYPE="char" LENGTH="5" NOTNULL="true" DEFAULT="QR2D" SEQUENCE="false" COMMENT="Type of codebar"/>
+        <FIELD NAME="codebartype" TYPE="char" LENGTH="15" NOTNULL="true" DEFAULT="QR2D" SEQUENCE="false" COMMENT="Type of codebar"/>
         <FIELD NAME="lengthuserinfo" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Length of personalized ID"/>
         <FIELD NAME="teammethod" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Method of team creation feature"/>
         <FIELD NAME="numteams" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="Number of default teams"/>

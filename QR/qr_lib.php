@@ -128,8 +128,8 @@ $data_bits[$data_counter]=4;
 
 /*  --- determine encode mode */
 
-if (ereg("[^0-9]",$qrcode_data_string)){
-    if (ereg("[^0-9A-Z \$\*\%\+\-\.\/\:]",$qrcode_data_string)) {
+if (preg_match("/[^0-9]/",$qrcode_data_string)){
+    if (preg_match("/[^0-9A-Z \$\*\%\+\-\.\/\:]/",$qrcode_data_string)) {
 
      /*  --- 8bit byte mode */
 

@@ -706,14 +706,12 @@ function blended_print_page_header(TCPDF $pdf,$dims,$usercode,$activity_code,$he
 
 	switch($headeroptions->codebarType)
 	{
-		case 'QR2D':
-			blended_print_2Dbarcode ($dims, $pdf, $headeroptions, $usercode, $page, $margins, $style, $identifyLabel);
-			break;
+		case 'EAN13':
+        		blended_print_1Dbarcode ($dims, $pdf, $headeroptions, $usercode, $page, $margins, $style);
+        		break;
 		default:
-
-			blended_print_1Dbarcode ($dims, $pdf, $headeroptions, $usercode, $page, $margins, $style);
-
-	}
+       			blended_print_2Dbarcode ($dims, $pdf, $headeroptions, $usercode, $page, $margins, $style, $identifyLabel,$headeroptions->codebarType);
+      	}
 /**
  * Header fields
  */
@@ -1658,7 +1656,7 @@ function blended_generate_attempt ($attemptnumber, $quiz, $USER, $timestamp)
 	return $attempt;
 }
 
-function blended_print_2Dbarcode ($dims, $pdf, $headeroptions, $activity_code, $page, $margins, $style, $identifyLabel)
+function blended_print_2Dbarcode ($dims, $pdf, $headeroptions, $activity_code, $page, $margins, $style, $identifyLabel,$codebar_type='QRCode,Q')
 {
 	$html='';
 	$codebarW=min($headeroptions->codebarWidth/2,$headeroptions->rowHeight*3);
@@ -1666,12 +1664,12 @@ function blended_print_2Dbarcode ($dims, $pdf, $headeroptions, $activity_code, $
 // QR code
 	$pdf->SetFontSize(6);
 	
-	$codebarX=$pdf->getPageWidth()-$margins['right']-$codebarW;
-	$codebarY=$margins['top']+$margins['header']-1;
+	$codebarX= $pdf->getPageWidth()-$margins['right']-$codebarW;
+	$codebarY= $margins['top']+$margins['header']-1+2;
 	$pdf->setXY($codebarX,$codebarY);
 	blended_saveXY($dims,$pdf);
-	$pdf->write2DBarcode($activity_codepage,'DATAMATRIX',$codebarX,$codebarY,
-											$codebarW,$headeroptions->rowHeight*3);		
+	$pdf->write2DBarcode($activity_codepage,$codebar_type,$codebarX,$codebarY,
+		$codebarW,$headeroptions->rowHeight*3);		
 	$pdf->setXY($codebarX+$codebarW,$pdf->GetY());
 	blended_saveWH($dims,$pdf);
 	blended_saveBarCode($dims,"TEMPLATEFIELD");

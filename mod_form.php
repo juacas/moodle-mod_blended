@@ -61,10 +61,13 @@ class mod_blended_mod_form extends moodleform_mod {
 	    $mform->setDefault('idmethod', 0);
 
         // Tipo Codigo de barras  ----------------------------------------------
-        $idcodeoptions = array('QR2D'=>'QR 2D','C39' => 'C39','EAN13'=>'EAN13');
+        $idcodeoptions = array('QRCode,Q'=>'QR 2D',
+                            'DATAMATRIX'=>'DATAMATRIX ISO/IEC 16022',
+                            'PDF417'=>'PDF417 ISO/IEC 15438:2006',
+                            'EAN13'=>'EAN13');
         $mform->addElement('select', 'codebartype', get_string("codebartype", "blended"), $idcodeoptions);
 	$mform->addHelpButton('codebartype', 'codebartype', 'blended');
-        $mform->setDefault('codebartype', 'QR2D');
+        $mform->setDefault('codebartype', 'QRCode,Q');
     	
 	    // enable/disable OMR part
 	   

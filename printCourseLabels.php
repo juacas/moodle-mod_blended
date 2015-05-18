@@ -27,11 +27,11 @@ require_once ("../../config.php");
 require_once ("lib.php");
 require_once("blended_locallib.php");
 require_once ("omr/omrlib.php");
+require_once('blendedpdf.php');
 
 // Get the params --------------------------------------------------
 global $DB, $PAGE, $OUTPUT;
-$id = optional_param ( 'id', 0, PARAM_INT );
-$a = optional_param ( 'a', 0, PARAM_INT );
+$id = required_param ( 'id', PARAM_INT );
 $action = optional_param ( 'do', 'sheet', PARAM_ALPHA );
 $scale = optional_param ( 'scale', 2, PARAM_INT );
 $identifyLabel = optional_param ( 'identifyLabel', 'none', PARAM_ALPHA );
@@ -42,7 +42,7 @@ $margins ['top'] = optional_param ( 'margintop', 10, PARAM_INT );
 $margins ['bottom'] = optional_param ( 'marginbottom', 10, PARAM_INT );
 $margins ['right'] = optional_param ( 'marginright', 10, PARAM_INT );
 
-if ($id) {
+
 	if (! $cm = get_coursemodule_from_id ( 'blended', $id )) {
 		error ( "Course Module ID was incorrect" );
 	}
@@ -56,20 +56,7 @@ if ($id) {
 	if (! $user = $DB->get_record ( 'user', array ('id' => $USER->id ) )) {
 		error ( "No such user in this course" );
 	}
-} else {
-	if (! $blended = $DB->get_record ( 'blended', array ('id' => $a ) )) {
-		error ( "Course module is incorrect" );
-	}
-	if (! $course = $DB->get_record ( 'course', array ('id' => $blended->course ) )) {
-		error ( "Course is misconfigured" );
-	}
-	if (! $cm = get_coursemodule_from_instance ( "blended", $blended->id, $course->id )) {
-		error ( "Course Module ID was incorrect" );
-	}
-	if (! $user = $DB->get_record ( 'user', array ('id' => $USER->id ) )) {
-		error ( "No such user in this course" );
-	}
-}
+
 // Log --------------------------------------------------------------
 
 //add_to_log ( $course->id, "blended", "printCourselabels", "printCourseLabels.php?id=$blended->id", "$blended->id" );
@@ -89,7 +76,6 @@ require_capability ( 'mod/blended:printlabels', $context );
 // show headings and menus of page ----------------------------------
 $url = new moodle_url ( '/mod/blended/printCourseLabels.php', array (
 		'id' => $id,
-		'a' => $a,
 		'do' => $action,
 		'scale' => $scale,
 		'identifyLabel' => $identifyLabel,
@@ -123,7 +109,7 @@ if ($code == - 1 || $code == - 2) {
 	) );
 	
 	//Print the messages ---------------------
-	$url = "labels.php?a=$blended->id";
+	$url = "labels.php?id=$blended->id";
 	if ($code == - 1) {	
 		notice ( get_string ( "cantprintlabel", "blended" ), $url );
 	} else if ($code == - 2) {
@@ -175,7 +161,8 @@ function pdfLabelsPage($userids, $blended, $numrows, $numcolumns, $margins, $ide
 		global $CFG, $DB;
 		
 		// create new PDF document
-		$pdf = new TCPDF ( PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false );
+//		$pdf = new TCPDF ( PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false );
+		$pdf = new blendedPDF ( PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false );
 		$pdf->SetPrintHeader ( false );
 		$pdf->SetPrintFooter ( false );
 		// set document information

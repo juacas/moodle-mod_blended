@@ -31,10 +31,9 @@
 
 // Get the params --------------------------------------------------
     global $DB, $PAGE, $OUTPUT;
-    $id = optional_param('id', 0, PARAM_INT); // Course Module ID, or
-    $a  = optional_param('a', 0,  PARAM_INT); // blended ID
+    $id = required_param('id',  PARAM_INT); // Course Module ID, or
     
-    if ($id) {
+  
         if (! $cm = get_coursemodule_from_id('blended', $id)){
             error("Course Module ID was incorrect");
         }
@@ -49,20 +48,7 @@
         if (! $user = $DB->get_record('user',array('id'=> $USER->id))) {
             error("No such user in this course");
         }
-    } else {
-        if (! $blended = $DB->get_record('blended', array( 'id'=> $a))) {
-            error("Course module is incorrect");
-        }
-        if (! $course = $DB->get_record('course', array('id' => $blended->course))) {
-            error("Course is misconfigured");
-        }
-        if (! $cm = get_coursemodule_from_instance("blended", $blended->id, $course->id)) {
-            error("Course Module ID was incorrect");
-        }
-        if (! $user = $DB->get_record('user', array ( 'id' => $USER->id))) {
-            error("No such user in this course");
-        }
-    }
+   
 
 // Log --------------------------------------------------------------
     
@@ -82,7 +68,7 @@
     
     
 // show headings and menus of page-------------------------------------
-    $url =  new moodle_url('/mod/blended/labels.php',array('id'=>$id,'a'=>$a));
+    $url =  new moodle_url('/mod/blended/labels.php',array('id'=>$id));
     $PAGE->set_url($url);
     $PAGE->set_title(format_string($blended->name));
     $PAGE->set_heading($course->fullname);
@@ -144,7 +130,7 @@
     $url = "printCourseLabels.php";
     
     echo "<form method=\"post\" action=\"$url\"  id=\"rowscolumnsform\">";
-       echo '<input name="a" value="'.$blended->id.'" type="hidden"/>';
+       echo '<input name="id" value="'.$id.'" type="hidden"/>';
         // Table
        echo '<fieldset ><legend>'.$strpageformat.':</legend>'; 
        echo '<table  width="60%" cellspacing="10" cellpadding="5" >';

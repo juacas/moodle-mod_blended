@@ -263,74 +263,69 @@ function blended_remove_checksums($id_member, $blended) {
 /********************************************************************************
  * Print an id label for an user according to the policy selected
  * TODO: Document this function!!
+ * Codebartypes:
+ * *  <ul><li>DATAMATRIX : Datamatrix (ISO/IEC 16022)</li>
+ * <li>PDF417 : PDF417 (ISO/IEC 15438:2006)</li><li>PDF417,a,e,t,s,f,o0,o1,o2,o3,o4,o5,o6 : PDF417 with parameters: a = aspect ratio (width/height); e = error correction level (0-8); t = total number of macro segments; s = macro segment index (0-99998); f = file ID; o0 = File Name (text); o1 = Segment Count (numeric); o2 = Time Stamp (numeric); o3 = Sender (text); o4 = Addressee (text); o5 = File Size (numeric); o6 = Checksum (numeric). NOTES: Parameters t, s and f are required for a Macro Control Block, all other parametrs are optional. To use a comma character ',' on text options, replace it with the character 255: "\xff".</li>
+ * <li>QRCODE : QRcode Low error correction</li>
+ * <li>QRCODE,L : QRcode Low error correction</li>
+ * <li>QRCODE,M : QRcode Medium error correction</li>
+ * <li>QRCODE,Q : QRcode Better error correction</li>
+ * <li>QRCODE,H : QR-CODE Best error correction</li>
+ * <li>RAW: raw mode - comma-separad list of array rows</li>
+ * <li>RAW2: raw mode - array rows are surrounded by square parenthesis.</li>
+ * <li>TEST : Test matrix</li></ul>
  *********************************************************************************/
-function blended_print_student_label($pdf,$blended,$codebartype,$style,$identifyLabels,$user,$columnsWidth,$rowsHeight)
-{
-	
-	$x=$pdf->getX();
-	$y=$pdf->getY();
-	$align='';
-	$code=blended_gen_idvalue($user,$blended);
+function blended_print_student_label($pdf, $blended, $codebartype, $style, $identifyLabels, $user, $columnsWidth, $rowsHeight) {
+
+    $x = $pdf->getX();
+    $y = $pdf->getY();
+    $align = '';
+    $code = blended_gen_idvalue($user, $blended);
 // 	if($identifyLabels!='none')
-	$identifyHeight=3;
+    $identifyHeight = 3;
 // 	else
 // 	$identifyHeight=0;
 
-	switch($identifyLabels)
-	{
-		case 'fullname': $idText=fullname($user)/*.'<br>'.$code*/;break;
-		case 'id': $idText=$code;break;
-		//blended_gen_cleanidvalue($user,$blended);break; // cleanidvalue do not include checksum needed for EAN13
-		case 'none': $idText='';break;
-		case 'code': $idText="ID:$code";
-	}
+    switch ($identifyLabels) {
+        case 'fullname': $idText = fullname($user)/* .'<br>'.$code */;
+            break;
+        case 'id': $idText = $code;
+            break;
+        //blended_gen_cleanidvalue($user,$blended);break; // cleanidvalue do not include checksum needed for EAN13
+        case 'none': $idText = '';
+            break;
+        case 'code': $idText = "ID:$code";
+    }
 
-	if ($code==-1 || $code==-2)
-	{
-		$pdf->writeHTMLCell($columnsWidth,$rowsHeight-$identifyHeight,'','',fullname($user).": No posee código de identificación.",0,2,0,true,'C');
-	}
-	else
-	{
-		switch($codebartype)
-		{
-			case 'QR2D':
+    if ($code == -1 || $code == -2) {
+        $pdf->writeHTMLCell($columnsWidth, $rowsHeight - $identifyHeight, '', '', fullname($user) . ": No posee código de identificación.", 0, 2, 0, true, 'C');
+    } else {
+        switch ($codebartype) {
+            case 'EAN13':
 
-			$dim=min($columnsWidth,	$rowsHeight);
-				
-			if($identifyLabels!='none')
-			 {
-			 //	$pdf->SetXY($x+$dim,$identifyHeight+$y);
-			 $pdf->writeHTMLCell($columnsWidth-$dim,$rowsHeight,'','',$idText,0,0);
-			 }
-			 else
-			 {
-			  $pdf->writeHTMLCell($columnsWidth-$dim,$rowsHeight,'','',"ID not shown.",0,0);
-			 }
-				$pdf->SetXY($x+$columnsWidth-$dim,$y);
-			
-				$pdf->write2DBarcode($code,'DATAMATRIX',$x+$columnsWidth-$dim,$y,$dim,$dim);
-				
-				break;
-				
-			default:
-				
-			
-				if($identifyLabels!='none' && $identifyLabels!='code')
-				{
-					$pdf->Cell($columnsWidth,$identifyHeight,$idText,'',2,'L',0,'',0);
-					
-				}
-				
-				$pdf->SetXY($x,$identifyHeight+$y);
-				$pdf->write1DBarcode($code, $codebartype,
-							'',//$margins['left']+$c*$columnsWidth, 
-							'',//$r*$rowsHeight, 
-				$columnsWidth,
-				$rowsHeight-$identifyHeight,
-				0.2,
-				$style,
-				$align);
-		}
-	}
-	$pdf->Rect($x,$y,$columnsWidth,$rowsHeight);
+                if ($identifyLabels != 'none' && $identifyLabels != 'code') {
+                    $pdf->Cell($columnsWidth, $identifyHeight, $idText, '', 2, 'L', 0, '', 0);
+                }
+
+                $pdf->SetXY($x, $identifyHeight + $y);
+                $pdf->write1DBarcode($code, $codebartype, '', //$margins['left']+$c*$columnsWidth, 
+                        '', //$r*$rowsHeight, 
+                        $columnsWidth, $rowsHeight - $identifyHeight, 0.2, $style, $align);
+            default:
+
+                $dim = min($columnsWidth, $rowsHeight);
+
+                if ($identifyLabels != 'none') {
+                    //	$pdf->SetXY($x+$dim,$identifyHeight+$y);
+                    $pdf->writeHTMLCell($columnsWidth - $dim, $rowsHeight, '', '', $idText, 0, 0);
+                } else {
+                    $pdf->writeHTMLCell($columnsWidth - $dim, $rowsHeight, '', '', "ID not shown.", 0, 0);
+                }
+                $pdf->SetXY($x + $columnsWidth - $dim, $y);
+                $pdf->write2DBarcode($code, $codebartype, $x + $columnsWidth - $dim + 2, $y + 2, $dim - 4, $dim - 4);
+//				$pdf->writeBlended2DBarcode($code,'QRCode,Q',$x+$columnsWidth-$dim,$y,$dim,$dim);
+                break;
+        }
+    }
+    $pdf->Rect($x, $y, $columnsWidth, $rowsHeight);
 }
