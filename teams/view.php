@@ -91,7 +91,7 @@
     echo $OUTPUT->spacer(array('height'=>20));
 //    echo $OUTPUT->heading(format_string($strlabelspage));
     $blendedStickersOptions = "<table cellpadding=\"10\" border=0 >
-								<tr><td width=\"300\"  valign=\"top\">$icons1</td><td> $link_labels
+								<tr><td  valign=\"top\">$icons1</td><td> $link_labels
 								</td><td valign=\"top\">".get_string('labelsGenerateStickersdesc', 'blended')."</td></tr></table>";
     echo $OUTPUT->box(format_text($blendedStickersOptions),'generalbox', 'intro');
     echo $OUTPUT->spacer(array('height'=>20));
@@ -109,7 +109,7 @@
     $icons_grade_team = "<img src=\"images/grade_teams.png\" align=\"left\" height=\"100\"/>";//<img src=\"images/rightArrow.png\" align=\"left\" height=\"50\"/><img src=\"images/grades_team.jpg\" align=\"left\" height=\"100\"/>";
 	
     $teamOptions="<table cellpadding=\"10\" border=0 >
-								<tr><td width=\"300\" valign=\"top\">$icons2</td><td valign=\"top\">$link_assignment_page
+								<tr><td valign=\"top\">$icons2</td><td valign=\"top\">$link_assignment_page
 								</td><td valign=\"top\">".get_string('managementGenerateTaskSheet', 'blended')."
 								<tr><td valign=\"top\">$icons_grade_team</td><td valign=\"top\"> $link_gradepage
 								</td><td valign=\"top\">".get_string('managementTeamGrading', 'blended')."</td></tr>".
