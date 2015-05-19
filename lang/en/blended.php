@@ -39,10 +39,10 @@ $string['any'] = 'any';
 //view.php
 $string['mainpage_help'] = "Blended is a module that helps to undertake presential activities in Moodle.";
 $string['mainpage'] = "Blended is a module that helps to undertake presential activities in Moodle.";
-$string['assignmentpage'] = 'Generate assignment page';
+$string['assignmentpage'] = 'Generate Assignment page';
 $string['blendedquizzes'] = 'Blended Quizzes';
 $string['pluginadministration'] = 'Blended Configuration';
-$string['labelspage'] = 'Generate a page with stickers';
+$string['labelspage'] = 'Generate Page with stickers';
 $string['management'] = 'Team and assignment management';
 $string['studentOptions'] = 'Students\' Options';
 $string['gradepage'] = 'Grade assignmnent';
@@ -72,7 +72,7 @@ $string['studentJoinAGroup'] = 'You can join a workteam to undertake a classroom
 
 //assignmentpage.php
 $string['assignmentpagedescr'] = 'Select the assignment page to print';
-$string['defaultassignment'] = 'Assignmnent: ';
+$string['defaultassignment'] = 'Assignment: ';
 $string['assignments'] = 'Select activity: ';
 $string['assignment'] = 'Assignment (if not in the list): ';
 $string['user'] = 'Student: ';
@@ -110,7 +110,7 @@ $string['noinserted'] = '<center>No operation has been done.</center>';
 //grades.php
 $string['nameassigment'] = 'Assignment name';
 $string['gradeassignments'] = 'Assignment to grade:';
-$string['duedate'] = 'Due date: ';
+$string['duedate'] = 'Due date';
 $string['graded'] = 'Graded';
 $string['no'] = 'No';
 $string['yes'] = 'Yes';
@@ -144,7 +144,7 @@ $string['deleteemptyteams'] = 'Remove teams if empty';
 
 
 //introteams.php
-$string['introteamspage'] = 'Assign groups to assigment';
+$string['introteamspage'] = 'Assign grouping to assigment';
 $string['introteams'] = 'Team management for ';
 $string['creationmethod'] = 'Team creation method:';
 $string['byhand'] = 'Manual';
@@ -153,9 +153,9 @@ $string['studentsselection'] = 'Students selection:';
 $string['activestudents'] = 'Only active';
 $string['allstudents'] = 'All';
 $string['nummembers'] = 'Number of members in a team:';
-$string['resetgroups'] = 'Reset or create a set of teams';
-$string['select_grouping'] = 'Choose the set of groups to be used in the activity';
-$string['change_groups_button'] = 'Change to this set of groups.';
+$string['resetgroups'] = 'Create a new grouping';
+$string['select_grouping'] = 'Choose the grouping to be used in the activity';
+$string['change_groups_button'] = 'Change grouping';
 $string['introteams'] = 'Team management for ';
 $string['warning_previous_grades']='There are grades assigned by configuration of teams. If you change this organization, every grade must be re-entered!';
 
