@@ -107,7 +107,7 @@ require_once ("$CFG->libdir/filelib.php");
 	$PAGE->set_heading ( $course->fullname );
 	$PAGE->set_pagelayout ( 'standard' );
 	$link=new moodle_url("grades.php",array('id'=>$id));;
-	$PAGE->navbar->add($strteamsmanagementpage,$link);
+	$PAGE->navbar->add($strgradepage,$link);
 	$PAGE->navbar->add($strintroteamspage);
 	echo $OUTPUT->header ();
 
