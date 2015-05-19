@@ -85,6 +85,10 @@ $string['printassignmentpage'] = 'Print assignment page';
 $string['noassignments'] = 'There are no assignments created in this course.';
 
 
+//printassignmentpage.php
+$string['username'] = 'User name';
+
+
 //signupteam.php
 $string['selectassignpage'] = 'Sign up team';
 $string['signupteam'] = 'Sign up team';
@@ -158,6 +162,7 @@ $string['select_grouping'] = 'Choose the grouping to be used in the activity';
 $string['change_groups_button'] = 'Change grouping';
 $string['introteams'] = 'Team management for ';
 $string['warning_previous_grades']='There are grades assigned by configuration of teams. If you change this organization, every grade must be re-entered!';
+
 
 //saveteamsgrades.php
 $string['user_regraded'] = '{$a->userlink} regraded from "{$a->prev_grade}" to "{$a->new_grade}".';
