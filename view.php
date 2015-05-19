@@ -130,8 +130,6 @@ $strheader2 = get_string("header2", "blended");
 	$icons1 = "<img src=\"images/codebarSticker.png\" align=\"left\" height=\"100\"/>";
 	// generate form
 	$icons2 = "<img src=\"images/form_icon.jpg\" align=\"left\" height=\"100\"/>";
-	// grade a team
-	$icons3 = "<img src=\"images/examicons.jpg\" align=\"left\" height=\"100\"/><img src=\"images/rightArrow.png\" align=\"left\" height=\"50\"/><img src=\"images/grades_team.jpg\" align=\"left\" height=\"100\"/>";
 	// team management
 	$icons4 = "<img src=\"images/group.jpg\" align=\"left\" height=\"100\"/>";
 	// generate pdfs

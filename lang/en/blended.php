@@ -157,7 +157,7 @@ $string['resetgroups'] = 'Reset or create a set of teams';
 $string['select_grouping'] = 'Choose the set of groups to be used in the activity';
 $string['change_groups_button'] = 'Change to this set of groups.';
 $string['introteams'] = 'Team management for ';
-
+$string['warning_previous_grades']='There are grades assigned by configuration of teams. If you change this organization, every grade must be re-entered!';
 
 //saveteamsgrades.php
 $string['user_regraded'] = '{$a->userlink} regraded from "{$a->prev_grade}" to "{$a->new_grade}".';

@@ -67,8 +67,9 @@ require_once ("$CFG->libdir/filelib.php");
 	
 	
 	$context_course = context_course::instance( $cm->course );
-	if (! get_role_users ( 5, $context_course, false, 'u.id, u.lastname, u.firstname' )) {
-		error ( get_string ( 'errornostudents', 'blended' ) );
+        list($studentids,$nonstudentids,$activeids,$users)=  blended_get_users_by_type($context_course);
+	if (count($studentids)==0) {
+		print_error (  'errornostudents', 'blended' );
 	}
 
 	$context = context_module::instance( $cm->id );
@@ -127,7 +128,19 @@ require_once ("$CFG->libdir/filelib.php");
     }
  echo $OUTPUT->heading($heading.$OUTPUT->help_icon ( 'introteamspage', 'blended' ));
  echo $OUTPUT->box($subheading);
-
+// check if the item is graded
+// 
+$user_grades = blended_get_users_grades($item, $studentids);
+$blended_graded=0;
+foreach ($user_grades as $user_grade) {
+    if ($user_grade->blended!=''){
+        $blended_graded++;
+    }
+}
+if ($blended_graded>0){
+    // Warn the user
+    echo $OUTPUT->notification(get_string('warning_previous_grades','blended'));
+}
 //Elegir o crear AGRUPAMIENTO-------------------------------------------------------
 //Elegir AGRUPAMIENTO existente----------------------------
 	if ($item){	

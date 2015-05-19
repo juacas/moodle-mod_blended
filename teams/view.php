@@ -89,8 +89,8 @@
 * Labels
 **/	
     echo $OUTPUT->spacer(array('height'=>20));
-    echo $OUTPUT->heading(format_string($strlabelspage));
-    $blendedStickersOptions = "<table border=0 >
+//    echo $OUTPUT->heading(format_string($strlabelspage));
+    $blendedStickersOptions = "<table cellpadding=\"10\" border=0 >
 								<tr><td width=\"300\"  valign=\"top\">$icons1</td><td> $link_labels
 								</td><td valign=\"top\">".get_string('labelsGenerateStickersdesc', 'blended')."</td></tr></table>";
     echo $OUTPUT->box(format_text($blendedStickersOptions),'generalbox', 'intro');
@@ -104,16 +104,17 @@
 /**
 *  Teamwork management
 **/ 
-    echo $OUTPUT->heading(format_string($strmanagement));
-   
-    $teamOptions="<table border=0 >
+//    echo $OUTPUT->heading(format_string($strmanagement));
+   // grade a team
+    $icons_grade_team = "<img src=\"images/grade_teams.png\" align=\"left\" height=\"100\"/>";//<img src=\"images/rightArrow.png\" align=\"left\" height=\"50\"/><img src=\"images/grades_team.jpg\" align=\"left\" height=\"100\"/>";
+	
+    $teamOptions="<table cellpadding=\"10\" border=0 >
 								<tr><td width=\"300\" valign=\"top\">$icons2</td><td valign=\"top\">$link_assignment_page
 								</td><td valign=\"top\">".get_string('managementGenerateTaskSheet', 'blended')."
-								<tr><td valign=\"top\">$icons3</td><td valign=\"top\"> $link_gradepage
-								</td><td valign=\"top\">".get_string('managementTeamGrading', 'blended')."
-								 </td></tr><tr><td valign=\"top\">$icons4</td><td valign=\"top\"> $link_teamsmgnpage 
-								 </td><td valign=\"top\">".get_string('managementTeamCreation', 'blended')."
-								</td></tr></table>";
+								<tr><td valign=\"top\">$icons_grade_team</td><td valign=\"top\"> $link_gradepage
+								</td><td valign=\"top\">".get_string('managementTeamGrading', 'blended')."</td></tr>".
+//                                                                "<tr><td valign=\"top\">$icons4</td><td valign=\"top\"> $link_teamsmgnpage </td><td valign=\"top\">".get_string('managementTeamCreation', 'blended')."</td></tr>".
+                                                                "</table>";
     echo $OUTPUT->box(format_text($teamOptions), 'generalbox', 'intro');
     echo $OUTPUT->spacer(array('height'=>20));
        

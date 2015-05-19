@@ -991,13 +991,14 @@ global $OUTPUT;
        if (isset($grouping_name)){
            $numteams.=" <small>($grouping_name)</small>";
        }
-        
-        $row = array($assignmentlink, $due, $numteams, $grade);
         if ($showresetcolumn) {
             $teamurl = "introteams.php?id=$cm->id&itemid=" . $item->id;
-            $teamlink = "<a $class href=\"$teamurl\">" . $strresetteams . "</a>";
-            $row[] = $teamlink;
+            $action_icon = $OUTPUT->action_icon($teamurl,new pix_icon('i/settings',$strresetteams));
+            $teamlink = "<a $class href=\"$teamurl\">" . $action_icon . "</a>";
+            $numteams .= $teamlink;
         }
+        $row = array($assignmentlink, $due, $numteams, $grade);
+        
          if ($showeditcolumn) {
                 $row[] = $teamlink1;
             }
@@ -1228,15 +1229,22 @@ function pdfAssignmentPage($code, $margins, $fullname, grade_item $item, $course
  * miembros que poseen calificaci�n con sus calificaciones
  * ****************************************************************************** */
 
-function blended_comprobar_calificaciones(grade_item $item, array $users) {
+function blended_get_users_grades(grade_item $item, array $users) {
 
     global $DB;
+    $ids = array_map(function ($user) {
+        if ($user instanceof stdClass){
+        return $user->id;
+        }else{
+            return $user;
+        }
+    }, $users);
     $user_grades = array();
-    foreach ($users as $user) {
+    foreach ($ids as $userid) {
         $user_grade = new stdClass();
         $user_grade->blended = '';
         $user_grade->grade = '';
-        $user_grades[$user->id] = $user_grade;
+        $user_grades[$userid] = $user_grade;
     }
     $blended_grades = $DB->get_records('blended_grade', array('id_item' => $item->id));
     foreach ($blended_grades as $blended_grade) {
@@ -1250,9 +1258,7 @@ function blended_comprobar_calificaciones(grade_item $item, array $users) {
     }
 
 //        $grades_bd=$DB->get_records('grade_grades', array('itemid'=>$item->id));
-    $ids = array_map(function ($user) {
-        return $user->id;
-    }, $users);
+
     if (count($ids)>0){
     $grades_db = grade_grade::fetch_users_grades($item, $ids, true);
     }else{
@@ -1524,7 +1530,7 @@ function blended_generate_groups_table($item, $blended, $is_grading = true) {
     //Grading
     //Obtengo las calificaciones(Si existen) de los miembros tanto de la tabla "blended_grade" con de "grade_grades"
     if ($is_grading) {
-        $user_grades = blended_comprobar_calificaciones($item, $users_in_teams);
+        $user_grades = blended_get_users_grades($item, $users_in_teams);
         $gradearray = blended_get_scale_array($item);
         $grademax = $item->grademax;
         $gradelength = 3;
