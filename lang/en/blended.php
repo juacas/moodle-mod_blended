@@ -119,7 +119,7 @@ $string['numteams'] = 'Number of teams:';
 $string['teams'] = 'Number of teams';
 $string['resetteams'] = 'Reset teams';
 $string['createteams2'] = 'Create/Modify/Delete teams';
-$string['teamsmanagementpagedesc'] = 'Create teams for each assignment, manual or randomly.';
+$string['teamsmanagementpagedesc'] = 'Create teams for each assignment, manual or randomly';
 $string['pagehelp'] = 'Page help contents';
 $string['itemsforgrading'] = 'Items for grading';
 
@@ -144,7 +144,7 @@ $string['deleteemptyteams'] = 'Remove teams if empty';
 
 
 //introteams.php
-$string['introteamspage'] = 'Assign grouping to assigment';
+$string['introteamspage'] = 'Assign grouping to assignment';
 $string['introteams'] = 'Team management for ';
 $string['creationmethod'] = 'Team creation method:';
 $string['byhand'] = 'Manual';
@@ -169,7 +169,7 @@ $string['selectgroupingnotify'] = 'Selected a new grouping {$a->grouping_name} f
 
 
 //labels.php
-$string['labelspagedescr1'] = 'Select the student the number of labels by row and column that will be printed in a page';
+$string['labelspagedescr1'] = 'Select the students and the number of labels by row and column that will be printed in a page';
 $string['labelspagedescr2'] = 'Select the number of labels by row and column that will be printed in a page';
 $string['numrows'] = 'Number of columns: ';
 $string['numcolumns'] = 'Number of rows: ';
@@ -227,11 +227,13 @@ $string['blended:viewstatusdetails'] = 'View status details';
 
 //Files help
 $string['labelspage_help'] = 'This page enables an user to generate label sheets for the students in the course.
-								<br>The students can choose the page format and what students want labels are made.';
+								<br>The teachers can choose the page format and what students want labels are made.';
 $string['assignmentpage_help'] = 'This page allows you to select the activity and the list of students who want to generate the task page.';
-$string['gradepage_help'] = 'This page shows a list of the course activities with their grouping and the status of their assessment. In addition, the teacher can also modify the assigned grouping to an activity.';
-$string['introteamspage_help'] = 'This page allows the teacher to create (manual or randonmly) a new grouping for an activity.';
-$string['introgradespage_help'] = 'This page allows the teacher to insert the grades of an activity for each team. In addition, the teacher also can create and modify the name and members of the teams.';
+$string['gradepage_help'] = 'This page shows a list of the course activities with their grouping and the status of their assessment.
+								<br>The teacher can edit both the grouping established as the grade assigned to each group for an activity.';
+$string['introteamspage_help'] = 'This page allows the teacher to assign a grouping to an activity.
+                                  <br>The teacher can either select an existing grouping or create (manual or randomly) a new grouping.';
+$string['introgradespage_help'] = 'This page allows the teacher to insert the grades of an activity for each team. In addition, the teacher also can add and modify the name and members of each team.';
 $string['selectassignmentpage_help'] = 'selectassignmentpage_help';
 $string['signupteampage_help'] = 'signupteampage_help';
 ?>
