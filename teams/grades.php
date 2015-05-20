@@ -71,7 +71,7 @@
     require_capability('mod/blended:introteams', $context);
  
     // show headings and menus of page
-    $url =  new moodle_url('/mod/blended/grades.php',array('id'=>$id,'groupingid'=>$groupingid));
+    $url =  new moodle_url('/mod/blended/teams/grades.php',array('id'=>$id,'groupingid'=>$groupingid));
     $PAGE->set_url($url);
     $PAGE->set_title(format_string($blended->name));
     $PAGE->set_heading($course->fullname);

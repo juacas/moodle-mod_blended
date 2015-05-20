@@ -132,7 +132,7 @@
     echo "<form method=\"post\" action=\"$url\"  id=\"rowscolumnsform\">";
        echo '<input name="id" value="'.$id.'" type="hidden"/>';
         // Table
-       echo '<fieldset ><legend>'.$strpageformat.':</legend>'; 
+       echo '<fieldset ><legend>'.$strpageformat.'</legend>'; 
        echo '<table  width="60%" cellspacing="10" cellpadding="5" >';
        
           // Page Configuration
@@ -198,8 +198,8 @@
            list($userids,$nonstudentids,$activeids,$users)=  blended_get_users_by_type($context_course);
            // Obtenemos todos los estudiantes del curso 	
             if($userids ){
-   				echo '<table><tr><td>';
-   				echo '<fieldset><legend>'.$strprintforone.':</legend>';
+   				echo '<table cellpadding="20"><tr><td>';
+   				echo '<fieldset><legend>'.$strprintforone.'</legend>';
                 echo '<table  align="center" cellspacing="10" cellpadding="5" >';
                 
                 // Etiqueta de la lista desplegable
@@ -302,7 +302,7 @@
          echo "<input type=\"hidden\" name=\"users[]\" value=\"$user->id\"";        
       }    
 
-	  echo '<fieldset ><legend ">'.$strlabelsformat.':</legend>';
+	  echo '<fieldset ><legend ">'.$strlabelsformat.'</legend>';
         echo '<label for="none"><input type="radio" id="none" name="identifyLabel" checked="true" value="none">'.$strdonotidentify.'</input></label>';
         echo '<label for="id"><input type="radio" name="identifyLabel" id="id" value="id">'.$strshowreadableid.'</input></label>';
         echo '<label for="fullname"><input type="radio" name="identifyLabel" id="fullname" value="fullname">'.$strshowfullname.'</input></label>';

@@ -85,11 +85,11 @@ function blended_supports($feature) {
 		case FEATURE_GRADE_HAS_GRADE:         return false;
 		case FEATURE_GRADE_OUTCOMES:          return false;
 		case FEATURE_RATE:                    return false;
-		case FEATURE_BACKUP_MOODLE2:          return true;
+		case FEATURE_BACKUP_MOODLE2:          return false;
 		case FEATURE_SHOW_DESCRIPTION:        return true;
 		case FEATURE_PLAGIARISM:              return false;
 
-		default: return null;
+		default: return false;
 	}
 }
 
@@ -327,4 +327,21 @@ function blended_scale_used ($blendedid,$scaleid) {
 		return $return;
 }
 
+function blended_extend_settings_navigation(settings_navigation $settings, navigation_node $navref) {
+     global $PAGE, $DB;
+
+     
+    $cm = $PAGE->cm;
+    
+    if (!$cm) {
+        return;
+    }
+    if ($PAGE->pagetype=='mod-blended-teams-grades' 
+      || $PAGE->pagetype=='mod-blended-teams-introteams')
+     if (has_capability('mod/blended:introteams', $cm->context) ) {
+        $link = new moodle_url('/mod/blended/teams/teams_graph.php', array('id' => $cm->id));
+        $linkname = get_string('view_teams_graph', 'blended');
+        $node = $navref->add($linkname, $link, navigation_node::TYPE_CUSTOM);
+    }
+}
 ?>

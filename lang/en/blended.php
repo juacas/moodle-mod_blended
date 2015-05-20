@@ -2,6 +2,7 @@
 $string['modulename'] = 'Blended';
 $string['pluginname'] = 'Blended';
 $string['modulenameplural'] = 'Blendeds';
+$string['view_teams_graph'] = 'View teaming graphically';
 
 //update.php
 $string['name'] = 'Name';
