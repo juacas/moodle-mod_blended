@@ -984,8 +984,8 @@ global $OUTPUT;
                 }            
                 $graded = 1;
             }
-            $icon = $OUTPUT->pix_url('i/grades');
-            $grade = "<a $class href=\"$gradeurl\"><img src=\"$icon\"/></a>$gradestr";
+            $icon = $OUTPUT->pix_url('i/settings');
+            $grade = "$gradestr<a $class href=\"$gradeurl\"><img src=\"$icon\"/></a>";
            
         }
         else
