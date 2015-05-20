@@ -36,8 +36,9 @@
     $id = required_param('id', PARAM_INT); // Course Module ID, or
 
     $cm = get_coursemodule_from_id('blended', $id,null,null,MUST_EXIST);
+    require_login($cm->course, false, $cm);
     $course=get_course($cm->course);
-
+     
     if (! $blended = $DB->get_record('blended',array('id'=> $cm->instance))) {
             print_error("Course module is incorrect");
         }
@@ -47,7 +48,7 @@
     $context_module = context_module::instance($cm->id);
     require_capability('mod/blended:blended', $context_module);
     
-    require_login($cm->course, false, $cm);    
+   
     // Log --------------------------------------------------------------
     $info='';
     $url="view.php?id=$cm->id";

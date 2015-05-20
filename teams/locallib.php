@@ -902,7 +902,7 @@ function blended_get_item_html_title($item) {
  * @param boolean $showeditcolumn
  * @return \html_table table object
  */
-function blended_get_items_table($blended, $cm, $items, $showresetcolumn = false, $showeditcolumn = false) {
+function blended_generate_items_table($blended, $cm, $items, $showresetcolumn = false, $showeditcolumn = false) {
 
     // Get the strings ------------------------------------------------- 
 global $OUTPUT;
@@ -957,14 +957,25 @@ global $OUTPUT;
             $grouping_name = $grouping->name;           
             $gradeurl = new moodle_url('/mod/blended/teams/introgrades.php', array('id' => $cm->id, 'itemid' => $item->id));
 
-            //Tarea no calificada
+            //Tarea no calificada?
             $grades = $DB->get_records("blended_grade", array("id_item" => $item->id));
             if (!$grades) {
                 $gradestr=$strno;
                 $graded = 0;
             } else {
                 //Tarea completamente calificada
-                if (count($grades) == $numteams) {
+                $teams_graded_count=0;
+                $teams_graded = array_map(function($grade){return $grade->id_team;}, $grades);
+                foreach ($teams as $team){
+                    if (array_search($team->id,$teams_graded)){
+                        $teams_graded_count++;
+                    }
+                }
+                if ($teams_graded_count==0){
+                    $gradestr=$strno;
+                    $graded = 0;
+                }else
+                if ($teams_graded_count==count($teams)) {
                     $gradestr= $stryes;
                 }
                 //Tarea calificada parcialmente

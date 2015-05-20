@@ -120,7 +120,7 @@
     	$timenow = time();
     	$currentsection = "";
     	
-    	$table = blended_get_items_table($blended,$cm,$items,true,false);	
+    	$table = blended_generate_items_table($blended,$cm,$items,true,false);	
    	echo html_writer::table($table);
    	}
    		  
