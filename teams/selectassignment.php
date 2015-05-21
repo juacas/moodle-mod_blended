@@ -66,7 +66,7 @@ require_once ($CFG->dirroot . '/grade/lib.php');
 	require_capability ( 'mod/blended:signupteam', $context );
 
 	// show headings and menus of page
-	$url = new moodle_url ( '/mod/blended/selectassignment.php', array (
+	$url = new moodle_url ( '/mod/blended/teams/selectassignment.php', array (
 		'id' => $id,
 	) );
 	$PAGE->set_url ( $url );
@@ -138,9 +138,7 @@ require_once ($CFG->dirroot . '/grade/lib.php');
 		echo "</center>";	
 	}//Fin if-else
 	// Finish the page
-        echo "<BR><BR><center>";
-        echo $OUTPUT->help_icon('selectassignment', 'blended');
-        echo "</center>";
+     
 	echo $OUTPUT->footer ();
 ?>
 
