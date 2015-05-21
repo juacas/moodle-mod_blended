@@ -74,7 +74,7 @@ $string['studentJoinAGroup'] = 'You can join a workteam to undertake a classroom
 //assignmentpage.php
 $string['assignmentpagedescr'] = 'Select the task page to print';
 $string['defaultassignment'] = 'Task: ';
-$string['assignments'] = 'Select activity: ';
+$string['assignments'] = 'Select task: ';
 $string['assignment'] = 'Task (if not in the list): ';
 $string['user'] = 'Student: ';
 $string['noactiveuser'] = 'With (*) the students are not active in the course!';
@@ -84,6 +84,10 @@ $string['nouserinfodata']  = 'With (#) the students that have not introduced the
 $string['noselected'] = 'Select: ';
 $string['printassignmentpage'] = 'Print task page';
 $string['noassignments'] = 'There are no tasks created in this course.';
+
+
+//selectassignment.php
+$string['selectassignmentpage'] = 'Select task';
 
 
 //printassignmentpage.php
@@ -241,6 +245,6 @@ $string['introteamspage_help'] = 'This page allows the teacher to assign a set o
 									<br>The teacher can either select an existing set of teams (i.e. the grouping in Moodle) or create (manual or randomly) a new one.';
 $string['introgradespage_help'] = 'This page allows the teacher to insert the grades of an activity for each team.
 									<br>In addition, the teacher also can add and modify the name and members of each team.';
-$string['selectassignmentpage_help'] = 'selectassignmentpage_help';
+$string['selectassignmentpage_help'] = 'To sign up a team, student must first select the task through this page.';
 $string['signupteampage_help'] = 'signupteampage_help';
 ?>
