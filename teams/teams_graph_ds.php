@@ -53,22 +53,41 @@
     
     $context_course = context_course::instance($cm->course);
      // show headings and menus of page
-    $url =  new moodle_url('/mod/blended/teams/teams_graph.php',array('id'=>$id));
-    $PAGE->set_url($url);
-    $PAGE->set_title(format_string($blended->name));
-    $PAGE->set_heading($course->fullname);
-    $PAGE->set_pagelayout('standard');
+ 
     
-    $PAGE->navbar->add('graphs');
-
-    $PAGE->requires->css(new moodle_url('/mod/blended/teams/teams_graph_flare.css'));
-    $PAGE->requires->js(new moodle_url('/mod/blended/script/d3.min.js'));
-    $PAGE->requires->js(new moodle_url('/mod/blended/script/teams_graph_flare.js'));
-    $PAGE->requires->js(new moodle_url('/mod/blended/script/packages.js'));
-    echo $OUTPUT->header();
     
-echo $OUTPUT->container('','',"teams_graph");
-echo '<script>var blendedid='.$id.';</script>';
-echo $OUTPUT->footer();
-?>
+//    list($students,$nonstudents,$active,$users)=  blended_get_users_by_type($context_course);
+    $relations=array();
+    $groups = groups_get_all_groups($course->id);
+    foreach ($groups as $group){
+        $members = groups_get_members($group->id);
+        foreach ($members as $member){
+            if (isset($relations[$member->id])){
+                $member_entry =$relations[$member->id];
+            }else{
+                $member_entry = array();
+                $member_entry["teamedwith"]=array();
+                $member_entry["teamedwithnames"]=array();
+                $member_entry["name"] = fullname($member);
+            }
+            
+            $member_entry["teamedwith"]+=$members;
+            unset($member_entry["teamedwith"][$member->id]);
+            foreach ($member_entry["teamedwith"] as $user){
+//                        $userpic = $OUTPUT->user_picture($user);
+//                        $profilelink = '<a href="' . $CFG->wwwroot . '/user/view.php?id=' . $user->id . '&course=' . $course->id . '">' . fullname($user, true) . '</a>';
 
+                $member_entry["teamedwithnames"][]= fullname($user);
+            }
+            $relations[$member->id]=$member_entry;
+        }
+    }
+    // clean data
+    $cleaned = array();
+    foreach ($relations as $rel){
+        unset($rel["teamedwith"]);
+        $cleaned[]=$rel;
+    }
+ $jsonvar= json_encode($cleaned);
+ header("Content-Type: application/json");
+ echo $jsonvar;
